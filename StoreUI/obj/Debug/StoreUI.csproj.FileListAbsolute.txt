@@ -1,0 +1,12 @@
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.PopupInformation.resources
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.PopupOrder.resources
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.PopupProduct.resources
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.Properties.Resources.resources
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.StoreMain.resources
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.csproj.GenerateResource.Cache
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\bin\Debug\StoreUI.exe.config
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\bin\Debug\StoreUI.exe
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\bin\Debug\StoreUI.pdb
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.exe
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.pdb
+C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.csprojResolveAssemblyReference.cache
