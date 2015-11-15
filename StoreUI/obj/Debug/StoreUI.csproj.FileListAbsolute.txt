@@ -10,3 +10,6 @@ C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\bin\Debu
 C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.exe
 C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.pdb
 C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debug\StoreUI.csprojResolveAssemblyReference.cache
+C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
+C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
+C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
