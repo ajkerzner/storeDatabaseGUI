@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
-    <Compile Include="DbManagement.cs" />
     <Compile Include="PopupInformation.cs">
       <SubType>Form</SubType>
     </Compile>

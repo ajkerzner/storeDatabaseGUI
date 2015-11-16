@@ -13,3 +13,6 @@ C:\Users\Jennifer\Documents\Visual Studio 2013\Projects\StoreUI\StoreUI\obj\Debu
 C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
 C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
 C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
+C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
+C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
+C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
