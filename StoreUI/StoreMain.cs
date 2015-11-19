@@ -20,7 +20,14 @@ namespace StoreUI
         }
 
         #region Event Handlers
-        private void tsmiInventory_Click(object sender, EventArgs e)
+        private void tsmiInventoryStore_Click(object sender, EventArgs e)
+        {
+            //Change Title to "Inventory"
+            //Use below method to populate listview with store inventory (Products table?)
+            //Make submit button invisible
+        }
+
+        private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
         {
             //Change Title to "Inventory"
             //Use below method to populate listview with store inventory (Products table?)
@@ -31,13 +38,6 @@ namespace StoreUI
         {
             //Change Title to "Customer Orders"
             //Use below method to populate listview with customer orders
-            //Make submit button visible
-        }
-
-        private void tsmiOrderSupplier_Click(object sender, EventArgs e)
-        {
-            //Change Title to "Supplier Orders"
-            //Use below method to populate listview with supplier orders
             //Make submit button visible
         }
 

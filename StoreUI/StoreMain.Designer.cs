@@ -67,13 +67,13 @@
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.inventoryToolStripMenuItem.Text = "Inventory";
-            this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventory_Click);
             // 
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
             this.ordersToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.ordersToolStripMenuItem.Text = "Customer Orders";
+            this.ordersToolStripMenuItem.Click += new System.EventHandler(this.tsmiOrderCustomer_Click);
             // 
             // informationToolStripMenuItem
             // 
@@ -187,12 +187,14 @@
             this.storeInventoryToolStripMenuItem.Name = "storeInventoryToolStripMenuItem";
             this.storeInventoryToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.storeInventoryToolStripMenuItem.Text = "Store Inventory";
+            this.storeInventoryToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryStore_Click);
             // 
             // allProductsToolStripMenuItem
             // 
             this.allProductsToolStripMenuItem.Name = "allProductsToolStripMenuItem";
             this.allProductsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.allProductsToolStripMenuItem.Text = "All Products";
+            this.allProductsToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryAllProducts_Click);
             // 
             // StoreMain
             // 
