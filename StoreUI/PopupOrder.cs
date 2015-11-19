@@ -52,6 +52,8 @@ namespace StoreUI
             if(ID == "")
             {
                 btnAdd.Text = "Add Order";
+
+                //Set the customer order box to all customers
                 SQL = "SELECT CustomerID, LastName, FirstName FROM Customers";
                 DataTable customersdt = DataAccess.Read(SQL, null);
                 foreach(DataRow dr in customersdt.Rows)
@@ -59,7 +61,8 @@ namespace StoreUI
                     cmbbxCustomers.Items.Add(dr["CustomerID"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString());
                 }
 
-                SQL = "SELECT InventoryItemID, SupplierID, ProductID FROM Products";
+                //Populate listview with store inventory
+                SQL = "SELECT InventoryItemID, SupplierID, ProductID, QuantityInInventory FROM Products";
                 DataTable dt = DataAccess.Read(SQL, null);
                 foreach(DataRow dr in dt.Rows)
                 {
@@ -73,6 +76,7 @@ namespace StoreUI
                         item.SubItems.Add(pricedt.Rows[0]["Price"].ToString());
                     else
                         item.SubItems.Add("0.00");
+                    item.SubItems.Add(dr["QuantityInInventory"].ToString());
                     item.SubItems.Add("0");
                     item.Checked = false;
                     lstvwOrderedProducts.Items.Add(item);
@@ -82,11 +86,14 @@ namespace StoreUI
             {
                 btnAdd.Text = "Edit Order";
                 OrderID = ID;
+                
+                // Set the customer combobox to the customer whose order is being edited
                 SQL = "SELECT CustomerID FROM OrderInvoice WHERE OrderID=" + OrderID;
                 DataTable customersdt = DataAccess.Read(SQL, null);
                 SQL = "SELECT CustomerID, LastName, FirstName FROM Customers WHERE CustomerID=" + customersdt.Rows[0]["CustomerID"];
                 customersdt = DataAccess.Read(SQL, null);
                 cmbbxCustomers.Items.Add(customersdt.Rows[0]["CustomerID"].ToString() + " " + customersdt.Rows[0]["FirstName"].ToString() + " " + customersdt.Rows[0]["LastName"].ToString());
+                cmbbxCustomers.SelectedIndex = 1;
 
                 SQL = "SELECT InventoryItemID, Quantity FROM OrderProduct WHERE OrderID=" + ID;
                 DataTable dt = DataAccess.Read(SQL, null);
@@ -94,7 +101,7 @@ namespace StoreUI
                 {
                     ListViewItem item = new ListViewItem(dr["InventoryItemID"].ToString());
 
-                    SQL = "SELECT SupplierID, ProductID FROM SupplierProducts WHERE InventoryItemID="
+                    SQL = "SELECT SupplierID, ProductID, QuantityInInventory FROM SupplierProducts WHERE InventoryItemID="
                         + dr["InventoryItemID"].ToString();
                     DataTable productdt = DataAccess.Read(SQL, null);
                     SQL = "SELECT Price FROM Products WHERE ProductID=" + productdt.Rows[0]["ProductID"].ToString();
@@ -106,6 +113,7 @@ namespace StoreUI
                         item.SubItems.Add(pricedt.Rows[0]["Price"].ToString());
                     else
                         item.SubItems.Add("0.00");
+                    item.SubItems.Add(productdt.Rows[0]["QuantityInInventory"].ToString());
                     item.SubItems.Add(dr["Quantity"].ToString());
                     item.Checked = false;
                     lstvwOrderedProducts.Items.Add(item);                    
