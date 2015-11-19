@@ -16,17 +16,19 @@ namespace StoreUI
         string SQL = "";
         List<OleDbParameter> sqlParameters = new List<OleDbParameter>();
         int numAffectedRows = 0;
+        string ID = "";
 
-        public PopupProduct(string AddEdit)
+        //If editing a preexisting product, hand the popup the ID, otherwise assume that a new product is being added
+        public PopupProduct(string ID)
         {
             InitializeComponent();
 
-            if(AddEdit == "Add")
+            if(ID == "")
             {
                 this.Text = "Add Product";
                 btnAdd.Text = "Add";
             }
-            else if(AddEdit == "Edit")
+            else
             {
                 this.Text = "Edit Product";
                 btnAdd.Text = "Edit";
@@ -36,29 +38,50 @@ namespace StoreUI
         //Button can be either Add or Edit and execute either SQL function?
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Exemplar for CREATE
-            SQL = "INSERT INTO FamilyTable (firstName, lastName, hometown, relationship, age) " +
-                  "VALUES (@firstName, @lastName, @hometown, @relationship, @age)";
-            sqlParameters.Clear();
-            sqlParameters.Add(new OleDbParameter("@firstName", "Jenn"));
-            sqlParameters.Add(new OleDbParameter("@lastName", "Neal"));
-            sqlParameters.Add(new OleDbParameter("@hometown", "Great Mills"));
-            sqlParameters.Add(new OleDbParameter("@relationship", "Tyrant"));
-            sqlParameters.Add(new OleDbParameter("@age", 21));
-            numAffectedRows = DataAccess.Create(SQL, sqlParameters);
-
-            // Exemplar for UPDATE
-            SQL = "UPDATE FamilyTable SET hometown=@hometown, relationship=@relationship WHERE lastName=@lastName";
-            sqlParameters.Clear();
-            sqlParameters.Add(new OleDbParameter("@hometown", "NONE"));
-            sqlParameters.Add(new OleDbParameter("@relationship", "Hobo"));
-            sqlParameters.Add(new OleDbParameter("@lastName", "Neal"));
-            numAffectedRows = DataAccess.Update(SQL, sqlParameters);
-
-            //if btnAdd text == add
-                //add the record
-            //else if it == edit
-                //edit the record
+            //REGEX ^[0-9]([.,][0-9]{1,3})?$
+            if (!(System.Text.RegularExpressions.Regex.IsMatch(txtbxPrice.Text, "^[0-9]([.,][0-9]{1,3})?$")))
+            {
+                txtbxPrice.ForeColor = Color.Red;
+            }
+            else
+            {
+                if(btnAdd.Text == "Add")
+                {
+                    SQL = "INSERT INTO Products (ProductName, Description, Price) VALUES (@productname, @description, @price)";
+                    sqlParameters.Clear();
+                    sqlParameters.Add(new OleDbParameter("@productname", txtbxProductName.Text));
+                    sqlParameters.Add(new OleDbParameter("@description", txtbxProductDescription.Text));
+                    sqlParameters.Add(new OleDbParameter("@price", txtbxPrice.Text));
+                    numAffectedRows = DataAccess.Create(SQL, sqlParameters);
+                    if(numAffectedRows < 1)
+                    {
+                        MessageBox.Show("An error occured. " + txtbxProductName.Text + " was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    // Exemplar for UPDATE
+                    SQL = "UPDATE Products SET ProductName=@productname, Description=@description, Price=@price WHERE ProductID=@ID";
+                    sqlParameters.Clear();
+                    sqlParameters.Add(new OleDbParameter("@productname", txtbxProductName.Text));
+                    sqlParameters.Add(new OleDbParameter("@description", txtbxProductDescription.Text));
+                    sqlParameters.Add(new OleDbParameter("@price", txtbxPrice.Text));
+                    sqlParameters.Add(new OleDbParameter("@ID", ID));
+                    numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+                    if (numAffectedRows < 1)
+                    {
+                        MessageBox.Show("An error occured. " + txtbxProductName.Text + " was not edited in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                }
+            }
         }
     }
 }
