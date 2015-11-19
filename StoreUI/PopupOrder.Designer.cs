@@ -35,34 +35,36 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.cmbbxCustomers = new System.Windows.Forms.ComboBox();
+            this.lstvwOrderedProducts = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancel.Location = new System.Drawing.Point(319, 405);
+            this.btnCancel.Location = new System.Drawing.Point(305, 397);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(151, 33);
             this.btnCancel.TabIndex = 23;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAdd.Location = new System.Drawing.Point(119, 405);
+            this.btnAdd.Location = new System.Drawing.Point(105, 397);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(151, 33);
             this.btnAdd.TabIndex = 22;
             this.btnAdd.Text = "Add Order";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 47);
+            this.textBox1.Location = new System.Drawing.Point(117, 42);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(87, 22);
             this.textBox1.TabIndex = 20;
@@ -70,7 +72,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Location = new System.Drawing.Point(12, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 18;
@@ -88,7 +90,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 50);
+            this.label4.Location = new System.Drawing.Point(214, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(141, 17);
             this.label4.TabIndex = 26;
@@ -96,44 +98,57 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(374, 47);
+            this.comboBox1.Items.AddRange(new object[] {
+            "Overnight",
+            "Priority (1-3 Days)",
+            "First Class (1-3 Days)",
+            "Standard (2 - 8 Days)"});
+            this.comboBox1.Location = new System.Drawing.Point(361, 42);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 24);
+            this.comboBox1.Size = new System.Drawing.Size(183, 24);
             this.comboBox1.TabIndex = 27;
             // 
-            // comboBox2
+            // cmbbxCustomers
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(90, 6);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(481, 24);
-            this.comboBox2.TabIndex = 28;
+            this.cmbbxCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbbxCustomers.FormattingEnabled = true;
+            this.cmbbxCustomers.Location = new System.Drawing.Point(90, 6);
+            this.cmbbxCustomers.Name = "cmbbxCustomers";
+            this.cmbbxCustomers.Size = new System.Drawing.Size(454, 24);
+            this.cmbbxCustomers.TabIndex = 28;
             // 
-            // listView1
+            // lstvwOrderedProducts
             // 
-            this.listView1.Location = new System.Drawing.Point(15, 123);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(269, 261);
-            this.listView1.TabIndex = 29;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lstvwOrderedProducts.CheckBoxes = true;
+            this.lstvwOrderedProducts.FullRowSelect = true;
+            this.lstvwOrderedProducts.HideSelection = false;
+            this.lstvwOrderedProducts.Location = new System.Drawing.Point(15, 98);
+            this.lstvwOrderedProducts.Name = "lstvwOrderedProducts";
+            this.lstvwOrderedProducts.Size = new System.Drawing.Size(529, 286);
+            this.lstvwOrderedProducts.TabIndex = 29;
+            this.lstvwOrderedProducts.UseCompatibleStateImageBehavior = false;
+            this.lstvwOrderedProducts.View = System.Windows.Forms.View.Details;
+            this.lstvwOrderedProducts.SelectedIndexChanged += new System.EventHandler(this.lstvwOrderedProducts_SelectedIndexChanged);
             // 
-            // listView2
+            // label3
             // 
-            this.listView2.Location = new System.Drawing.Point(300, 123);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(271, 261);
-            this.listView2.TabIndex = 30;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Products:";
             // 
             // PopupOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 450);
-            this.Controls.Add(this.listView2);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.comboBox2);
+            this.ClientSize = new System.Drawing.Size(560, 442);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lstvwOrderedProducts);
+            this.Controls.Add(this.cmbbxCustomers);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -157,8 +172,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ComboBox cmbbxCustomers;
+        private System.Windows.Forms.ListView lstvwOrderedProducts;
+        private System.Windows.Forms.Label label3;
     }
 }
