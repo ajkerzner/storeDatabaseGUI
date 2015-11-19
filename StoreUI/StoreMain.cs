@@ -12,7 +12,6 @@ namespace StoreUI
 {
     public partial class StoreMain : Form
     {
-        // Attempting to Fix Push Changes
         string OrderBy = ""; // Used to determine the Order By SQL clause
 
         public StoreMain()
@@ -23,37 +22,40 @@ namespace StoreUI
         #region Event Handlers
         private void tsmiInventoryStore_Click(object sender, EventArgs e)
         {
-            //Change Title to "Inventory"
-            //Use below method to populate listview with store inventory (Products table?)
-            //Make submit button invisible
+            //Change Title to "Store Inventory"
+            //Use below method to populate listview with store inventory (SupplierProducts Table)
+            //Make btnSubmit and lblOrderedProductsTitle invisible
         }
 
         private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
         {
-            //Change Title to "Inventory"
-            //Use below method to populate listview with store inventory (Products table?)
-            //Make submit button invisible
+            //Change Title to "All Products"
+            //Use below method to populate listview with store inventory (Products Table)
+            //Make btnSubmit and lblOrderedProductsTitle invisible
         }
 
         private void tsmiOrderCustomer_Click(object sender, EventArgs e)
         {
-            //Change Title to "Customer Orders"
-            //Use below method to populate listview with customer orders
-            //Make submit button visible
+            //Change Title to "Order Invoices"
+            //Use below method to populate listview with order invoices
+            //Make first order selected
+            //Create another ListView (maybe this should be permanent with toggle visible/invisible) and populate with order parts for the first order
+            //Set Listview location and size
+            //Make btnSubmit and lblOrderedProductsTitle VISIBLE
         }
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
         {
             //Change Title to "Customer Information"
             //Use below method to populate listview with customer information
-            //Make submit button invisible
+            //Make btnSubmit and lblOrderedProductsTitle invisible
         }
 
         private void tsmiInformationSupplier_Click(object sender, EventArgs e)
         {
             //Change title to "Supplier Information"
             //Use below method to populate listview with supplier information
-            //Make submit button invisible
+            //Make btnSubmit and lblOrderedProductsTitle invisible
         }
 
         private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,9 +67,7 @@ namespace StoreUI
         {
             //If Title = "Inventory"
                 // Open PopupProduct
-            //If Title = "Customer Orders"
-                // Open PopupOrder
-            //If Title = "Supplier Orders"
+            //If Title = "Order Invoices"
                 // Open PopupOrder
             //If Title = "Customer Information"
                 // Open PopupInformation
@@ -77,8 +77,8 @@ namespace StoreUI
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Delete the selected record
-            // Display a popup saying the record has been deleted
+            //Change the field that indicates if the order has been fulfilled
+            //"Refresh" the listview
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -86,12 +86,10 @@ namespace StoreUI
             //If Title = "Inventory"
                 // Open PopupProduct
                 // Populate the textboxes in the form with the selected product's information
-            //If Title = "Customer Orders"
+            //If Title = "Order Invoices"
                 // Open PopupOrder
-                // Populate the textboxes in the form with the selected customer's order's information
-            //If Title = "Supplier Orders"
-                // Open PopupOrder
-                // Populate the textboxes in the form with the selected supplier's order's information
+                // Populate the textboxes in the form with the selected customer's order's information (THIS MAY NOT CURRENTLY WORK?)
+                // Find a way to handle the products that are part of an order...
             //If Title = "Customer Information"
                 // Open PopupInformation
                 // Populate the textboxes in the form with the selected customer's information
@@ -102,7 +100,9 @@ namespace StoreUI
 
         private void lstvwData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //This may not be needed?
+            //Needed for order invoices to display the products that belong to that order
+            //If Title = "Order Invoices"
+                //Use that selection to determine the order and display its parts...
         }
         #endregion
 
@@ -112,10 +112,8 @@ namespace StoreUI
         {
             //If Title = "Inventory"
                 //Create headers: Product Name, Description, Quantity, Price
-            //If Title = "Customer Orders"
-                //Create headers: Product name, price, quantity, shipping preference, tracking number, shipping cost
-            //If Title = "Supplier Orders"
-                //Create headers: Product name, price, quantity, shipping preference, tracking number, shipping cost
+            //If Title = "Order Invoices"
+                //Create headers: Customer ID, customer name, shipping preference, tracking number, shipping cost
             //If Title = "Customer Information"
                 //Create headers: Name, Address, City, State, PostalCode, Phone, Email
             //If Title = "Supplier Information"
@@ -128,6 +126,8 @@ namespace StoreUI
                 //header.TextAlign = HorizontalAlignment.Center;
                 //lstvwData.Columns.Add(header);
         }
+
+        //CREATE METHOD TO SET LIST VIEW HEADERS FOR ORDERED PRODUCTS (Second Listview)
 
         //Populate the Listview
         public void SetListView()

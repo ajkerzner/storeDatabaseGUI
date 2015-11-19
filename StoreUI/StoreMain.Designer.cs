@@ -30,6 +30,8 @@
         {
             this.tsmiMenu = new System.Windows.Forms.MenuStrip();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storeInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,8 +43,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.storeInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblOrderedProductsTitle = new System.Windows.Forms.Label();
             this.tsmiMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,20 @@
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.inventoryToolStripMenuItem.Text = "Inventory";
             // 
+            // storeInventoryToolStripMenuItem
+            // 
+            this.storeInventoryToolStripMenuItem.Name = "storeInventoryToolStripMenuItem";
+            this.storeInventoryToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.storeInventoryToolStripMenuItem.Text = "Store Inventory";
+            this.storeInventoryToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryStore_Click);
+            // 
+            // allProductsToolStripMenuItem
+            // 
+            this.allProductsToolStripMenuItem.Name = "allProductsToolStripMenuItem";
+            this.allProductsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.allProductsToolStripMenuItem.Text = "All Products";
+            this.allProductsToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryAllProducts_Click);
+            // 
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
@@ -87,14 +102,14 @@
             // customerToolStripMenuItem1
             // 
             this.customerToolStripMenuItem1.Name = "customerToolStripMenuItem1";
-            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
             this.customerToolStripMenuItem1.Text = "Customer";
             this.customerToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationCustomer_Click);
             // 
             // supplierToolStripMenuItem1
             // 
             this.supplierToolStripMenuItem1.Name = "supplierToolStripMenuItem1";
-            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
             this.supplierToolStripMenuItem1.Text = "Supplier";
             this.supplierToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationSupplier_Click);
             // 
@@ -182,25 +197,23 @@
             this.btnSubmit.Visible = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // storeInventoryToolStripMenuItem
+            // lblOrderedProductsTitle
             // 
-            this.storeInventoryToolStripMenuItem.Name = "storeInventoryToolStripMenuItem";
-            this.storeInventoryToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.storeInventoryToolStripMenuItem.Text = "Store Inventory";
-            this.storeInventoryToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryStore_Click);
-            // 
-            // allProductsToolStripMenuItem
-            // 
-            this.allProductsToolStripMenuItem.Name = "allProductsToolStripMenuItem";
-            this.allProductsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.allProductsToolStripMenuItem.Text = "All Products";
-            this.allProductsToolStripMenuItem.Click += new System.EventHandler(this.tsmiInventoryAllProducts_Click);
+            this.lblOrderedProductsTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOrderedProductsTitle.AutoSize = true;
+            this.lblOrderedProductsTitle.Location = new System.Drawing.Point(381, 52);
+            this.lblOrderedProductsTitle.Name = "lblOrderedProductsTitle";
+            this.lblOrderedProductsTitle.Size = new System.Drawing.Size(121, 17);
+            this.lblOrderedProductsTitle.TabIndex = 17;
+            this.lblOrderedProductsTitle.Text = "Products Ordered";
+            this.lblOrderedProductsTitle.Visible = false;
             // 
             // StoreMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 499);
+            this.Controls.Add(this.lblOrderedProductsTitle);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.tsmiMenu);
@@ -236,5 +249,6 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.ToolStripMenuItem storeInventoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allProductsToolStripMenuItem;
+        private System.Windows.Forms.Label lblOrderedProductsTitle;
     }
 }
