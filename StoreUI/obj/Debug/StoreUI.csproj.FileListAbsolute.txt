@@ -16,3 +16,6 @@ C:\Users\AlexKerzner\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
 C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
 C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
 C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
