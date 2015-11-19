@@ -51,6 +51,12 @@
     <Compile Include="PopupInformation.Designer.cs">
       <DependentUpon>PopupInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="PopupInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupInventory.Designer.cs">
+      <DependentUpon>PopupInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="PopupOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <EmbeddedResource Include="PopupInformation.resx">
       <DependentUpon>PopupInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupInventory.resx">
+      <DependentUpon>PopupInventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PopupOrder.resx">
       <DependentUpon>PopupOrder.cs</DependentUpon>
