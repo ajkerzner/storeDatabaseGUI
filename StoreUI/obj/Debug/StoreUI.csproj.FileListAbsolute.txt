@@ -19,3 +19,11 @@ C:\Users\Riley\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
 C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\bin\Debug\StoreUI.exe.config
 C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.exe
 C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.pdb
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.csprojResolveAssemblyReference.cache
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.PopupInformation.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.PopupInventory.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.PopupOrder.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.PopupProduct.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.Properties.Resources.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.StoreMain.resources
+C:\Users\Jennifer\Source\Repos\storeDatabaseGUI\StoreUI\obj\Debug\StoreUI.csproj.GenerateResource.Cache

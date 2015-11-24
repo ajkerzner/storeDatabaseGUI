@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic; // For InputBox
 
 namespace StoreUI
 {
@@ -17,6 +18,7 @@ namespace StoreUI
         List<OleDbParameter> sqlParameters = new List<OleDbParameter>();
         int numAffectedRows = 0;
         string OrderID = "";
+        string CustomerID = ""; // Customer ID within this form
 
         //If editing a preexisting order, initialize the popup the ID, otherwise assume that a new order is being added
         public PopupOrder(string ID)
@@ -61,6 +63,8 @@ namespace StoreUI
                     cmbbxCustomers.Items.Add(dr["CustomerID"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString());
                 }
 
+                this.CustomerID = customersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
+
                 //Populate listview with store inventory
                 SQL = "SELECT InventoryItemID, SupplierID, ProductID, QuantityInInventory FROM Products";
                 DataTable dt = DataAccess.Read(SQL, null);
@@ -88,12 +92,15 @@ namespace StoreUI
                 OrderID = ID;
                 
                 // Set the customer combobox to the customer whose order is being edited
-                SQL = "SELECT CustomerID FROM OrderInvoice WHERE OrderID=" + OrderID;
+                SQL = "SELECT CustomerID, ShippingCost FROM OrderInvoice WHERE OrderID=" + OrderID;
                 DataTable customersdt = DataAccess.Read(SQL, null);
                 SQL = "SELECT CustomerID, LastName, FirstName FROM Customers WHERE CustomerID=" + customersdt.Rows[0]["CustomerID"];
                 customersdt = DataAccess.Read(SQL, null);
                 cmbbxCustomers.Items.Add(customersdt.Rows[0]["CustomerID"].ToString() + " " + customersdt.Rows[0]["FirstName"].ToString() + " " + customersdt.Rows[0]["LastName"].ToString());
                 cmbbxCustomers.SelectedIndex = 1;
+
+                this.CustomerID = customersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
+                txtbxShippingCost.Text = customersdt.Rows[0]["ShippingCost"].ToString();
 
                 SQL = "SELECT InventoryItemID, Quantity FROM OrderProduct WHERE OrderID=" + ID;
                 DataTable dt = DataAccess.Read(SQL, null);
@@ -121,6 +128,7 @@ namespace StoreUI
             }
         }
 
+        //If the user selects a row, check its checkbox (default: only directly clicking the box will check it)
         private void lstvwOrderedProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstvwOrderedProducts.SelectedItems.Count > 0)
@@ -128,6 +136,8 @@ namespace StoreUI
                 foreach(ListViewItem item in lstvwOrderedProducts.SelectedItems)
                 {
                     item.Checked = true;
+                    string q = Interaction.InputBox("Enter Product Quantity: ", "Order Product Quantity");
+                    item.SubItems[4].Text = q;
                 }
             }
         }
@@ -136,20 +146,55 @@ namespace StoreUI
         {
             if(btnAdd.Text == "Add Order")
             {
-                SQL = "INSERT INTO OrderInvoice (ProductName, Description, Price) VALUES (@productname, @description, @price)";
-                //sqlParameters.Clear();
-                //sqlParameters.Add(new OleDbParameter("@productname", txtbxProductName.Text));
-                //sqlParameters.Add(new OleDbParameter("@description", txtbxProductDescription.Text));
-                //sqlParameters.Add(new OleDbParameter("@price", txtbxPrice.Text));
-                //numAffectedRows = DataAccess.Create(SQL, sqlParameters);
-                //if (numAffectedRows < 1)
-                //{
-                //    MessageBox.Show("An error occured. " + txtbxProductName.Text + " was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-                //    this.Close();
-                //}
+                // Add an order invoice
+                SQL = "INSERT INTO OrderInvoice (CustomerID, DateOrdered, ShippingPreference, ShippingCost, TrackingID, Completed) "
+                    + "VALUES (@customerid, @dateordered, @shippingpref, @shippingcost, @trackingid, @completed)";
+                sqlParameters.Clear();
+                sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); //cmbbxCustomers.Text.Split(' ')[0]
+                sqlParameters.Add(new OleDbParameter("@dateordered", DateTime.Now.ToOADate())); // USE SPECIAL OLE DB OBJECT FOR DATETIME
+                sqlParameters.Add(new OleDbParameter("@shippingpref", txtbxShippingCost.Text));
+                sqlParameters.Add(new OleDbParameter("@shippingcost", cmbbxShippingPref.Text));
+                sqlParameters.Add(new OleDbParameter("@trackingid", 0)); // What should the tracking ID be??
+                sqlParameters.Add(new OleDbParameter("@completed", false));
+
+                numAffectedRows = DataAccess.Create(SQL, sqlParameters);
+                if (numAffectedRows > 0)
+                {
+                    // Retrieve order invoice key
+                    SQL = "SELECT LAST(OrderID) AS rk FROM OrderInvoice";
+                    DataTable keydt = DataAccess.Read(SQL, null);
+                    this.OrderID = keydt.Rows[0]["rk"].ToString();
+
+                    // Use order invoice key to add ordered products
+                    foreach(ListViewItem lvi in lstvwOrderedProducts.Items)
+                    {
+                        if(lvi.Checked == true)
+                        {
+                            SQL = "INSERT INTO OrderProduct (OrderID, InventoryItemID, Quantity) VALUES (@orderid, @inventoryitemid, @quantity)";
+                            sqlParameters.Clear();
+                            sqlParameters.Add(new OleDbParameter("@orderid", this.OrderID));
+                            sqlParameters.Add(new OleDbParameter("@inventoryitemid", lvi.SubItems[0].Text));
+                            if (lvi.SubItems[4].Text == "")
+                                sqlParameters.Add(new OleDbParameter("@quantity", 0));
+                            else
+                                sqlParameters.Add(new OleDbParameter("@quantity", lvi.SubItems[4].Text));
+
+                            numAffectedRows = DataAccess.Create(SQL, sqlParameters);
+                            if (numAffectedRows < 1)
+                            {
+                                MessageBox.Show("An error occured. " + "" + " was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            }
+
+                        }
+                    }
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("An error occured. This order was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else //Edit
             {
@@ -159,7 +204,13 @@ namespace StoreUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void cmbbxCustomers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbbxCustomers.Text != "") // Selected Count > 0 doesn't work for combobox, test this check
+                this.CustomerID = cmbbxCustomers.Text.Split(' ')[0];
         }
     }
 }

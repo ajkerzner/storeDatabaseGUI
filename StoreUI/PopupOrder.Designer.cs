@@ -30,11 +30,11 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtbxShippingCost = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbbxShippingPref = new System.Windows.Forms.ComboBox();
             this.cmbbxCustomers = new System.Windows.Forms.ComboBox();
             this.lstvwOrderedProducts = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,12 +62,12 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // textBox1
+            // txtbxShippingCost
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(87, 22);
-            this.textBox1.TabIndex = 20;
+            this.txtbxShippingCost.Location = new System.Drawing.Point(117, 42);
+            this.txtbxShippingCost.Name = "txtbxShippingCost";
+            this.txtbxShippingCost.Size = new System.Drawing.Size(87, 22);
+            this.txtbxShippingCost.TabIndex = 20;
             // 
             // label1
             // 
@@ -96,19 +96,19 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "Shipping Preference:";
             // 
-            // comboBox1
+            // cmbbxShippingPref
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbbxShippingPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbbxShippingPref.FormattingEnabled = true;
+            this.cmbbxShippingPref.Items.AddRange(new object[] {
             "Overnight",
             "Priority (1-3 Days)",
             "First Class (1-3 Days)",
             "Standard (2 - 8 Days)"});
-            this.comboBox1.Location = new System.Drawing.Point(361, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(183, 24);
-            this.comboBox1.TabIndex = 27;
+            this.cmbbxShippingPref.Location = new System.Drawing.Point(361, 42);
+            this.cmbbxShippingPref.Name = "cmbbxShippingPref";
+            this.cmbbxShippingPref.Size = new System.Drawing.Size(183, 24);
+            this.cmbbxShippingPref.TabIndex = 27;
             // 
             // cmbbxCustomers
             // 
@@ -118,12 +118,12 @@
             this.cmbbxCustomers.Name = "cmbbxCustomers";
             this.cmbbxCustomers.Size = new System.Drawing.Size(454, 24);
             this.cmbbxCustomers.TabIndex = 28;
+            this.cmbbxCustomers.SelectedIndexChanged += new System.EventHandler(this.cmbbxCustomers_SelectedIndexChanged);
             // 
             // lstvwOrderedProducts
             // 
             this.lstvwOrderedProducts.CheckBoxes = true;
             this.lstvwOrderedProducts.FullRowSelect = true;
-            this.lstvwOrderedProducts.HideSelection = false;
             this.lstvwOrderedProducts.Location = new System.Drawing.Point(15, 98);
             this.lstvwOrderedProducts.Name = "lstvwOrderedProducts";
             this.lstvwOrderedProducts.Size = new System.Drawing.Size(529, 286);
@@ -149,12 +149,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lstvwOrderedProducts);
             this.Controls.Add(this.cmbbxCustomers);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbbxShippingPref);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtbxShippingCost);
             this.Controls.Add(this.label1);
             this.Name = "PopupOrder";
             this.Text = "PopupOrder";
@@ -167,11 +167,11 @@
 
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtbxShippingCost;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbbxShippingPref;
         private System.Windows.Forms.ComboBox cmbbxCustomers;
         private System.Windows.Forms.ListView lstvwOrderedProducts;
         private System.Windows.Forms.Label label3;
