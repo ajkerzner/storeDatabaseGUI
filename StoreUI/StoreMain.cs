@@ -22,7 +22,7 @@ namespace StoreUI
         #region Event Handlers
         private void tsmiInventoryStore_Click(object sender, EventArgs e)
         {
-            //Change Title to "Store Inventory"
+            lblTitle.Text = "Inventory";
             //Use below method to populate listview with store inventory (SupplierProducts Table)
             //Make btnSubmit and lblOrderedProductsTitle invisible
         }
