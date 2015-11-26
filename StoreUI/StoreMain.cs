@@ -23,21 +23,27 @@ namespace StoreUI
         private void tsmiInventoryStore_Click(object sender, EventArgs e)
         {
             lblTitle.Text = "Inventory";
-            //Use below method to populate listview with store inventory (SupplierProducts Table)
-            //Make btnSubmit and lblOrderedProductsTitle invisible
+            SetListViewHeaders();
+            SetListView();
+            btnSubmit.Visible = false;
+            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
         {
-            //Change Title to "All Products"
-            //Use below method to populate listview with store inventory (Products Table)
-            //Make btnSubmit and lblOrderedProductsTitle invisible
+            lblTitle.Text = "All Products";
+            SetListViewHeaders();
+            SetListView();
+            btnSubmit.Visible = false;
+            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiOrderCustomer_Click(object sender, EventArgs e)
         {
-            //Change Title to "Order Invoices"
-            //Use below method to populate listview with order invoices
+            lblTitle.Text = "Order Invoices";
+            SetListViewHeaders();
+            SetListView();
+            //TO DO:
             //Make first order selected
             //Create another ListView (maybe this should be permanent with toggle visible/invisible) and populate with order parts for the first order
             //Set Listview location and size
@@ -46,16 +52,20 @@ namespace StoreUI
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
         {
-            //Change Title to "Customer Information"
-            //Use below method to populate listview with customer information
-            //Make btnSubmit and lblOrderedProductsTitle invisible
+            lblTitle.Text = "Customer Information";
+            SetListViewHeaders();
+            SetListView();
+            btnSubmit.Visible = false;
+            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiInformationSupplier_Click(object sender, EventArgs e)
         {
-            //Change title to "Supplier Information"
-            //Use below method to populate listview with supplier information
-            //Make btnSubmit and lblOrderedProductsTitle invisible
+            lblTitle.Text = "Supplier Information";
+            SetListViewHeaders();
+            SetListView();
+            btnSubmit.Visible = false;
+            lblOrderedProductsTitle.Visible = false;
         }
 
         private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,14 +120,18 @@ namespace StoreUI
         //Add Headers to the Listview (these are necessary to populate it)
         public void SetListViewHeaders()
         {
-            //If Title = "Inventory"
+            if (lblTitle.Text == "Inventory") {
                 //Create headers: Product Name, Description, Quantity, Price
-            //If Title = "Order Invoices"
+            }
+            else if (lblTitle.Text == "Order Invoices") {
                 //Create headers: Customer ID, customer name, shipping preference, tracking number, shipping cost
-            //If Title = "Customer Information"
+            }
+            else if (lblTitle.Text == "Customer Information") {
                 //Create headers: Name, Address, City, State, PostalCode, Phone, Email
-            //If Title = "Supplier Information"
+            }
+            else if (lblTitle.Text == "Supplier Information") {
                 //Create headers: Name, Address, City, State, PostalCode, Phone, Email, Active
+            }
 
             //Example header:
                 //ColumnHeader header = new ColumnHeader();
