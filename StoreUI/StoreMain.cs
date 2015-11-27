@@ -47,7 +47,8 @@ namespace StoreUI
             //Make first order selected
             //Create another ListView (maybe this should be permanent with toggle visible/invisible) and populate with order parts for the first order
             //Set Listview location and size
-            //Make btnSubmit and lblOrderedProductsTitle VISIBLE
+            btnSubmit.Visible = true;
+            lblOrderedProductsTitle.Visible = true;
         }
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
@@ -68,21 +69,43 @@ namespace StoreUI
             lblOrderedProductsTitle.Visible = false;
         }
 
-        private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        //Changes the order by string, I'm not sure if I assigned OrderBy correctly
+       private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Change an orderby string (used for SQL building)
+            if (cmbbxSortBy.Text == "Product Name")
+            {
+                OrderBy = "Product Name";
+            } 
+            else if (cmbbxSortBy.Text == "Supplier Name")
+            {
+                OrderBy = "Supplier Name";
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //If Title = "Inventory"
-                // Open PopupProduct
-            //If Title = "Order Invoices"
-                // Open PopupOrder
-            //If Title = "Customer Information"
-                // Open PopupInformation
-            //If Title = "Supplier Information"
-                // Open PopupInformation
+            if (lblTitle.Text == "Inventory") 
+            {
+                PopupProduct popup = new PopupProduct("");
+                popup.Show();
+            }
+            else if (lblTitle.Text == "Order Invoices") 
+            {
+                PopupOrder popup = new PopupOrder("");
+                popup.Show();
+            }
+            else if (lblTitle.Text == "Customer Information") 
+            {
+                //Needs a parameter once the class is coded
+                PopupInformation popup = new PopupInformation();
+                popup.Show();
+            }
+            else if (lblTitle.Text == "Supplier Information")
+            {
+                //Needs a parameter once the class is coded
+                PopupInformation popup = new PopupInformation();
+                popup.Show();
+            }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -93,19 +116,27 @@ namespace StoreUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //If Title = "Inventory"
+            if (lblTitle.Text == "Inventory") 
+            {
                 // Open PopupProduct
                 // Populate the textboxes in the form with the selected product's information
-            //If Title = "Order Invoices"
+            } 
+            else if (lblTitle.Text == "Order Invoices")
+            {
                 // Open PopupOrder
                 // Populate the textboxes in the form with the selected customer's order's information (THIS MAY NOT CURRENTLY WORK?)
                 // Find a way to handle the products that are part of an order...
-            //If Title = "Customer Information"
+            }
+            else if (lblTitle.Text == "Customer Information")
+            {
                 // Open PopupInformation
                 // Populate the textboxes in the form with the selected customer's information
-            //If Title = "Supplier Information"
+            }
+            else if (lblTitle.Text == "Supplier Information") 
+            {
                 // Open PopupInformation
                 // Populate the textboxes in the form with the selected supplier's information
+            }
         }
 
         private void lstvwData_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,48 +148,99 @@ namespace StoreUI
         #endregion
 
         #region Functions
-        //Add Headers to the Listview (these are necessary to populate it)
+        //Adds headers to the Listview (these are necessary to populate it)
         public void SetListViewHeaders()
         {
-            if (lblTitle.Text == "Inventory") {
-                //Create headers: Product Name, Description, Quantity, Price
+            if (lblTitle.Text == "Inventory") 
+            {
+                AddHeader("Product Name", 200);
+                AddHeader("Description", 400);
+                AddHeader("Quantity", 100);
+                AddHeader("Price", 100);
             }
-            else if (lblTitle.Text == "Order Invoices") {
-                //Create headers: Customer ID, customer name, shipping preference, tracking number, shipping cost
+            //Need to check if there are more fields for this table
+            else if (lblTitle.Text == "All Products") 
+            {
+                AddHeader("Product Name", 200);
+                AddHeader("Description", 400);
+                AddHeader("Quantity", 100);
+                AddHeader("Price", 100);
             }
-            else if (lblTitle.Text == "Customer Information") {
-                //Create headers: Name, Address, City, State, PostalCode, Phone, Email
+            else if (lblTitle.Text == "Order Invoices") 
+            {
+                AddHeader("Customer ID", 150);
+                AddHeader("Customer Name", 200);
+                AddHeader("Shipping Preference", 300);
+                AddHeader("Tracking Number", 150);
+                AddHeader("Shipping Cost", 100);
+                
             }
-            else if (lblTitle.Text == "Supplier Information") {
-                //Create headers: Name, Address, City, State, PostalCode, Phone, Email, Active
+            else if (lblTitle.Text == "Customer Information") 
+            {
+                AddHeader("Name", 200);
+                AddHeader("Address", 400);
+                AddHeader("City", 150);
+                AddHeader("State", 50);
+                AddHeader("Postal Code", 100);
+                AddHeader("Phone", 150);
+                AddHeader("Email", 200);
             }
+            else if (lblTitle.Text == "Supplier Information") 
+            {
+                AddHeader("Name", 200);
+                AddHeader("Address", 400);
+                AddHeader("City", 150);
+                AddHeader("State", 50);
+                AddHeader("Postal Code", 100);
+                AddHeader("Phone", 150);
+                AddHeader("Email", 200);
+                AddHeader("Active", 50);
+            }
+        }
 
-            //Example header:
-                //ColumnHeader header = new ColumnHeader();
-                //header.Text = "Product Name";
-                //header.Width = 90;
-                //header.TextAlign = HorizontalAlignment.Center;
-                //lstvwData.Columns.Add(header);
+        //Helper function to add a header to the first ListView
+        private void AddHeader(String field, int width)
+        {
+            ColumnHeader header = new ColumnHeader();
+            header.Text = field;
+            header.Width = width;
+            header.TextAlign = HorizontalAlignment.Center;
+            lstvwData.Columns.Add(header);
         }
 
         //CREATE METHOD TO SET LIST VIEW HEADERS FOR ORDERED PRODUCTS (Second Listview)
 
-        //Populate the Listview
+        //Needs to actually handle populating
         public void SetListView()
         {
-            //If the listview contains items, clear it
-                //If you clear it, reset the headers (SetListViewHeaders())
-            //Else
-                //If Title = "Inventory"
+            if (lstvwData.Items.Count != 0)
+            {
+                lstvwData.Clear();
+                SetListViewHeaders();
+            }
+            else
+            {
+                if (lblTitle.Text == "Inventory")
+                {
                     //Populate with the Products table?
-                //If Title = "Customer Orders"
+                }
+                else if (lblTitle.Text == "Customer Orders")
+                {
                     //Populate with the Customer Orders Table?
-                //If Title = "Supplier Orders"
+                }
+                else if (lblTitle.Text == "Supplier Orders")
+                {
                     //Populate with the Supplier Orders Table?
-                //If Title = "Customer Information"
+                }
+                else if (lblTitle.Text == "Customer Information")
+                {
                     //Populate with the Customer Information Table?
-                //If Title = "Supplier Information"
+                }
+                else if (lblTitle.Text == "Supplier Information")
+                {
                     //Populate with the Supplier Information Table?
+                }
+            }
 
             //For each row in the datatable returned from the database, add an item to the listview. Example:
                 //foreach (DataRow dr in recipeResults.Rows)
