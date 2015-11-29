@@ -150,7 +150,7 @@ namespace StoreUI
                 SQL = "INSERT INTO OrderInvoice (CustomerID, DateOrdered, ShippingPreference, ShippingCost, TrackingID, Completed) "
                     + "VALUES (@customerid, @dateordered, @shippingpref, @shippingcost, @trackingid, @completed)";
                 sqlParameters.Clear();
-                sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); //cmbbxCustomers.Text.Split(' ')[0]
+                sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); // cmbbxCustomers.Text.Split(' ')[0]
                 sqlParameters.Add(new OleDbParameter("@dateordered", DateTime.Now.ToOADate())); // USE SPECIAL OLE DB OBJECT FOR DATETIME
                 sqlParameters.Add(new OleDbParameter("@shippingpref", txtbxShippingCost.Text));
                 sqlParameters.Add(new OleDbParameter("@shippingcost", cmbbxShippingPref.Text));
@@ -198,7 +198,44 @@ namespace StoreUI
             }
             else //Edit
             {
+                // Edit an order invoice
+                SQL = "UPDATE OrderInvoice SET CustomerID=@customerid, ShippingPreference=@shippingpref, ShippingCost=@shippingcost, "
+                    + "Completed=@completed WHERE OrderID=@orderid";
+                sqlParameters.Clear();
+                sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); // cmbbxCustomers.Text.Split(' ')[0]
+                //sqlParameters.Add(new OleDbParameter("@dateordered", DateTime.Now.ToOADate())); // CANNOT EDIT DATE ORDERED?
+                sqlParameters.Add(new OleDbParameter("@shippingpref", txtbxShippingCost.Text));
+                sqlParameters.Add(new OleDbParameter("@shippingcost", cmbbxShippingPref.Text));
+                //sqlParameters.Add(new OleDbParameter("@trackingid", 0)); // CANNOT EDIT TRACKING ID?
+                sqlParameters.Add(new OleDbParameter("@completed", false));
+                sqlParameters.Add(new OleDbParameter("@orderid", this.OrderID));
 
+                numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+                if (numAffectedRows > 0)
+                {
+                    foreach (ListViewItem lvi in lstvwOrderedProducts.Items)
+                    {
+                        if (lvi.Checked == true)
+                        {
+                            SQL = "UPDATE OrderProduct SET Quantity=@quantity WHERE OrderID=@orderid AND InventoryItemID=@inventoryitemid";
+                            sqlParameters.Clear();
+                            if (lvi.SubItems[4].Text == "")
+                                sqlParameters.Add(new OleDbParameter("@quantity", 0));
+                            else
+                                sqlParameters.Add(new OleDbParameter("@quantity", lvi.SubItems[4].Text));
+                            sqlParameters.Add(new OleDbParameter("@orderid", this.OrderID));
+                            sqlParameters.Add(new OleDbParameter("@inventoryitemid", lvi.SubItems[0].Text));
+                            
+                            numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+                            if (numAffectedRows < 1)
+                            {
+                                MessageBox.Show("An error occured. " + "" + " was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            }
+
+                        }
+                    }
+                }
             }
         }
 
