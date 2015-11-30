@@ -152,8 +152,14 @@ namespace StoreUI
                 sqlParameters.Clear();
                 sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); // cmbbxCustomers.Text.Split(' ')[0]
                 sqlParameters.Add(new OleDbParameter("@dateordered", DateTime.Now.ToOADate())); // USE SPECIAL OLE DB OBJECT FOR DATETIME
-                sqlParameters.Add(new OleDbParameter("@shippingpref", txtbxShippingCost.Text));
-                sqlParameters.Add(new OleDbParameter("@shippingcost", cmbbxShippingPref.Text));
+                if (cmbbxShippingPref.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@shippingpref", "Standard (2 - 8 Days)"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@shippingpref", cmbbxShippingPref.Text));
+                if (txtbxShippingCost.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@shippingcost", "0.00"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@shippingcost", txtbxShippingCost.Text));
                 sqlParameters.Add(new OleDbParameter("@trackingid", 0)); // What should the tracking ID be??
                 sqlParameters.Add(new OleDbParameter("@completed", false));
 
@@ -204,8 +210,14 @@ namespace StoreUI
                 sqlParameters.Clear();
                 sqlParameters.Add(new OleDbParameter("@customerid", this.CustomerID)); // cmbbxCustomers.Text.Split(' ')[0]
                 //sqlParameters.Add(new OleDbParameter("@dateordered", DateTime.Now.ToOADate())); // CANNOT EDIT DATE ORDERED?
-                sqlParameters.Add(new OleDbParameter("@shippingpref", txtbxShippingCost.Text));
-                sqlParameters.Add(new OleDbParameter("@shippingcost", cmbbxShippingPref.Text));
+                if (cmbbxShippingPref.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@shippingpref", "Standard (2 - 8 Days)"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@shippingpref", cmbbxShippingPref.Text));
+                if (txtbxShippingCost.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@shippingcost", "0.00"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@shippingcost", txtbxShippingCost.Text));
                 //sqlParameters.Add(new OleDbParameter("@trackingid", 0)); // CANNOT EDIT TRACKING ID?
                 sqlParameters.Add(new OleDbParameter("@completed", false));
                 sqlParameters.Add(new OleDbParameter("@orderid", this.OrderID));
@@ -229,7 +241,7 @@ namespace StoreUI
                             numAffectedRows = DataAccess.Update(SQL, sqlParameters);
                             if (numAffectedRows < 1)
                             {
-                                MessageBox.Show("An error occured. " + "" + " was not added to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("An error occured. " + "" + " was not edited in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
                             }
 
