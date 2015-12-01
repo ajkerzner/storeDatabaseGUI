@@ -35,14 +35,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cmbbxState = new System.Windows.Forms.ComboBox();
+            this.txtbxName = new System.Windows.Forms.TextBox();
+            this.txtbxAddress = new System.Windows.Forms.TextBox();
+            this.txtbxCity = new System.Windows.Forms.TextBox();
+            this.txtbxPostalCode = new System.Windows.Forms.TextBox();
+            this.txtbxPhoneNumber = new System.Windows.Forms.TextBox();
+            this.txtbxEmail = new System.Windows.Forms.TextBox();
+            this.chkbxActive = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -110,65 +110,117 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Email:";
             // 
-            // comboBox1
+            // cmbbxState
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(377, 78);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 24);
-            this.comboBox1.TabIndex = 8;
+            this.cmbbxState.FormattingEnabled = true;
+            this.cmbbxState.Items.AddRange(new object[] {
+            "AL",
+            "AK",
+            "AZ",
+            "AR",
+            "CA",
+            "CO",
+            "CT",
+            "DE",
+            "DC",
+            "FL",
+            "GA",
+            "HI",
+            "ID",
+            "IL",
+            "IN",
+            "IA",
+            "KS",
+            "KY",
+            "LA",
+            "ME",
+            "MD",
+            "MA",
+            "MI",
+            "MN",
+            "MS",
+            "MO",
+            "MT",
+            "NE",
+            "NV",
+            "NH",
+            "NJ",
+            "NM",
+            "NY",
+            "NC",
+            "ND",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VT",
+            "VA",
+            "WA",
+            "WV",
+            "WI",
+            "WY"});
+            this.cmbbxState.Location = new System.Drawing.Point(377, 78);
+            this.cmbbxState.Name = "cmbbxState";
+            this.cmbbxState.Size = new System.Drawing.Size(102, 24);
+            this.cmbbxState.TabIndex = 8;
             // 
-            // textBox1
+            // txtbxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(412, 22);
-            this.textBox1.TabIndex = 9;
+            this.txtbxName.Location = new System.Drawing.Point(67, 6);
+            this.txtbxName.Name = "txtbxName";
+            this.txtbxName.Size = new System.Drawing.Size(412, 22);
+            this.txtbxName.TabIndex = 9;
             // 
-            // textBox2
+            // txtbxAddress
             // 
-            this.textBox2.Location = new System.Drawing.Point(82, 40);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(397, 22);
-            this.textBox2.TabIndex = 10;
+            this.txtbxAddress.Location = new System.Drawing.Point(82, 40);
+            this.txtbxAddress.Name = "txtbxAddress";
+            this.txtbxAddress.Size = new System.Drawing.Size(397, 22);
+            this.txtbxAddress.TabIndex = 10;
             // 
-            // textBox3
+            // txtbxCity
             // 
-            this.textBox3.Location = new System.Drawing.Point(53, 78);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(267, 22);
-            this.textBox3.TabIndex = 11;
+            this.txtbxCity.Location = new System.Drawing.Point(53, 78);
+            this.txtbxCity.Name = "txtbxCity";
+            this.txtbxCity.Size = new System.Drawing.Size(267, 22);
+            this.txtbxCity.TabIndex = 11;
             // 
-            // textBox4
+            // txtbxPostalCode
             // 
-            this.textBox4.Location = new System.Drawing.Point(102, 115);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(104, 22);
-            this.textBox4.TabIndex = 12;
+            this.txtbxPostalCode.Location = new System.Drawing.Point(102, 115);
+            this.txtbxPostalCode.Name = "txtbxPostalCode";
+            this.txtbxPostalCode.Size = new System.Drawing.Size(104, 22);
+            this.txtbxPostalCode.TabIndex = 12;
             // 
-            // textBox5
+            // txtbxPhoneNumber
             // 
-            this.textBox5.Location = new System.Drawing.Point(326, 115);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(153, 22);
-            this.textBox5.TabIndex = 13;
+            this.txtbxPhoneNumber.Location = new System.Drawing.Point(326, 115);
+            this.txtbxPhoneNumber.Name = "txtbxPhoneNumber";
+            this.txtbxPhoneNumber.Size = new System.Drawing.Size(153, 22);
+            this.txtbxPhoneNumber.TabIndex = 13;
             // 
-            // textBox6
+            // txtbxEmail
             // 
-            this.textBox6.Location = new System.Drawing.Point(64, 153);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(415, 22);
-            this.textBox6.TabIndex = 14;
+            this.txtbxEmail.Location = new System.Drawing.Point(64, 153);
+            this.txtbxEmail.Name = "txtbxEmail";
+            this.txtbxEmail.Size = new System.Drawing.Size(415, 22);
+            this.txtbxEmail.TabIndex = 14;
             // 
-            // checkBox1
+            // chkbxActive
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 192);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(68, 21);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Active";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkbxActive.AutoSize = true;
+            this.chkbxActive.Location = new System.Drawing.Point(15, 192);
+            this.chkbxActive.Name = "chkbxActive";
+            this.chkbxActive.Size = new System.Drawing.Size(68, 21);
+            this.chkbxActive.TabIndex = 15;
+            this.chkbxActive.Text = "Active";
+            this.chkbxActive.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -179,6 +231,7 @@
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -189,6 +242,7 @@
             this.btnAdd.TabIndex = 24;
             this.btnAdd.Text = "Add Information";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // PopupInformation
             // 
@@ -197,14 +251,14 @@
             this.ClientSize = new System.Drawing.Size(496, 277);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.chkbxActive);
+            this.Controls.Add(this.txtbxEmail);
+            this.Controls.Add(this.txtbxPhoneNumber);
+            this.Controls.Add(this.txtbxPostalCode);
+            this.Controls.Add(this.txtbxCity);
+            this.Controls.Add(this.txtbxAddress);
+            this.Controls.Add(this.txtbxName);
+            this.Controls.Add(this.cmbbxState);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -228,14 +282,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox cmbbxState;
+        private System.Windows.Forms.TextBox txtbxName;
+        private System.Windows.Forms.TextBox txtbxAddress;
+        private System.Windows.Forms.TextBox txtbxCity;
+        private System.Windows.Forms.TextBox txtbxPostalCode;
+        private System.Windows.Forms.TextBox txtbxPhoneNumber;
+        private System.Windows.Forms.TextBox txtbxEmail;
+        private System.Windows.Forms.CheckBox chkbxActive;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
     }
