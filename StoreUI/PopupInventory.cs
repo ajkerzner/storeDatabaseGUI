@@ -112,7 +112,32 @@ namespace StoreUI
             }
             else
             {
-
+                SQL = "UPDATE SupplierProducts SET SupplierID=@supplierid, ProductID=@productid, Cost=@cost, Discount=@discount, "
+                    + "QuantityInInventory=@quantityininventory WHERE InventoryItemID=" + InventoryItemID;
+                sqlParameters.Clear();
+                sqlParameters.Add(new OleDbParameter("@supplierid", SupplierID));
+                sqlParameters.Add(new OleDbParameter("@productid", ProductID));
+                if (txtbxCost.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@cost", "0.00"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@cost", txtbxCost.Text));
+                if (txtbxDiscount.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@discount", "0.00"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@discount", txtbxDiscount.Text));
+                if (txtbxQuantity.Text == "")
+                    sqlParameters.Add(new OleDbParameter("@quantityininventory", "0.00"));
+                else
+                    sqlParameters.Add(new OleDbParameter("@quantityininventory", txtbxQuantity.Text));
+                int numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+                if (numAffectedRows < 1)
+                {
+                    MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    this.Close();
+                }
             }
         }
 
