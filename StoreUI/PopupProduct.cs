@@ -32,6 +32,11 @@ namespace StoreUI
             {
                 this.Text = "Edit Product";
                 btnAdd.Text = "Edit";
+                SQL = "SELECT * FROM Products WHERE ProductID=" + ID;
+                DataTable dt = DataAccess.Read(SQL, null);
+                txtbxProductName.Text = dt.Rows[0]["ProductName"].ToString();
+                txtbxPrice.Text = dt.Rows[0]["Price"].ToString();
+                txtbxProductDescription.Text = dt.Rows[0]["Description"].ToString();
             }
         }
 
