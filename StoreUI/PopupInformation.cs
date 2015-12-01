@@ -55,6 +55,7 @@ namespace StoreUI
                 {
                     this.Text = "Add New Supplier Information";
                     btnAdd.Text = "Add Supplier";
+                    chkbxActive.Checked = true;
                 }
                 else
                 {
@@ -133,8 +134,8 @@ namespace StoreUI
                 }
                 else if (CustomerSupplier == "Supplier" && btnAdd.Text == "Add Supplier")
                 {
-                    SQL = "INSERT INTO Suppliers (SupplierName, Address, City, State, PostalCode, Phone, Email) VALUES "
-                        + "(@suppliername, @address, @city, @state, @postalcode, @phone, @email)";
+                    SQL = "INSERT INTO Suppliers (SupplierName, Address, City, State, PostalCode, Phone, Email, Active) VALUES "
+                        + "(@suppliername, @address, @city, @state, @postalcode, @phone, @email, @active)";
                     sqlParameters.Clear();
                     sqlParameters.Add(new OleDbParameter("@suppliername", txtbxName.Text));
                     sqlParameters.Add(new OleDbParameter("@address", txtbxAddress.Text));
@@ -143,6 +144,7 @@ namespace StoreUI
                     sqlParameters.Add(new OleDbParameter("@postalcode", txtbxPostalCode.Text));
                     sqlParameters.Add(new OleDbParameter("@phone", txtbxPhoneNumber.Text));
                     sqlParameters.Add(new OleDbParameter("@email", txtbxEmail.Text));
+                    sqlParameters.Add(new OleDbParameter("@active", chkbxActive.Checked));
 
                     numAffectedRows = DataAccess.Create(SQL, sqlParameters);
                     if (numAffectedRows < 1)
@@ -157,7 +159,7 @@ namespace StoreUI
                 else if (CustomerSupplier == "Supplier" && btnAdd.Text == "Edit Info")
                 {
                     SQL = "UPDATE Suppliers SET SupplierName=@suppliername, Address=@address, City=@city, State=@state, "
-                        + "PostalCode=@postalcode, Phone=@phone, Email=@email WHERE SupplierID=" + CustomerSupplierID;
+                        + "PostalCode=@postalcode, Phone=@phone, Email=@email, Active=@active WHERE SupplierID=" + CustomerSupplierID;
                     sqlParameters.Clear();
                     sqlParameters.Add(new OleDbParameter("@suppliername", txtbxName.Text));
                     sqlParameters.Add(new OleDbParameter("@address", txtbxAddress.Text));
@@ -166,6 +168,8 @@ namespace StoreUI
                     sqlParameters.Add(new OleDbParameter("@postalcode", txtbxPostalCode.Text));
                     sqlParameters.Add(new OleDbParameter("@phone", txtbxPhoneNumber.Text));
                     sqlParameters.Add(new OleDbParameter("@email", txtbxEmail.Text));
+                    sqlParameters.Add(new OleDbParameter("@active", chkbxActive.Checked));
+
                     numAffectedRows = DataAccess.Update(SQL, sqlParameters);
                     if (numAffectedRows < 1)
                     {
