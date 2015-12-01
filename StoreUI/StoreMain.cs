@@ -43,10 +43,6 @@ namespace StoreUI
             lblTitle.Text = "Order Invoices";
             SetListViewHeaders();
             SetListView();
-            //TO DO:
-            //Make first order selected
-            //Create another ListView (maybe this should be permanent with toggle visible/invisible) and populate with order parts for the first order
-            //Set Listview location and size
             btnSubmit.Visible = true;
             lblOrderedProductsTitle.Visible = true;
         }
@@ -69,7 +65,7 @@ namespace StoreUI
             lblOrderedProductsTitle.Visible = false;
         }
 
-        //Changes the order by string, I'm not sure if I assigned OrderBy correctly
+        //Changes the order by string
        private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbbxSortBy.Text == "Product Name")
@@ -94,15 +90,20 @@ namespace StoreUI
                 PopupOrder popup = new PopupOrder("");
                 popup.Show();
             }
+            else if (lblTitle.Text == "All Products")
+            {
+                PopupProduct popup = new PopupProduct("");
+                popup.Show();
+            }
             else if (lblTitle.Text == "Customer Information") 
             {
-                //Needs a parameter once the class is coded
+                //Parameters will be ("Customer", "")
                 PopupInformation popup = new PopupInformation();
                 popup.Show();
             }
             else if (lblTitle.Text == "Supplier Information")
             {
-                //Needs a parameter once the class is coded
+                //Parameters will be ("Supplier", "")
                 PopupInformation popup = new PopupInformation();
                 popup.Show();
             }
@@ -118,24 +119,30 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                // Open PopupProduct
-                // Populate the textboxes in the form with the selected product's information
+                PopupProduct popup = new PopupProduct(lstvwData.SelectedItems[0].SubItems[0].Text);
+                popup.Show();
             } 
             else if (lblTitle.Text == "Order Invoices")
             {
-                // Open PopupOrder
-                // Populate the textboxes in the form with the selected customer's order's information (THIS MAY NOT CURRENTLY WORK?)
-                // Find a way to handle the products that are part of an order...
+                PopupOrder popup = new PopupOrder(lstvwData.SelectedItems[0].SubItems[0].Text);
+                popup.Show();
+            }
+            else if (lblTitle.Text == "All Products")
+            {
+                PopupProduct popup = new PopupProduct(lstvwData.SelectedItems[0].SubItems[0].Text);
+                popup.Show();
             }
             else if (lblTitle.Text == "Customer Information")
             {
-                // Open PopupInformation
-                // Populate the textboxes in the form with the selected customer's information
+                //Parameters will be ("Customer", lstvwData.SelectedItems[0].SubItems[0].Text)
+                PopupInformation popup = new PopupInformation();
+                popup.Show();
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
-                // Open PopupInformation
-                // Populate the textboxes in the form with the selected supplier's information
+                //Parameters will be ("Supplier", lstvwData.SelectedItems[0].SubItems[0].Text)
+                PopupInformation popup = new PopupInformation();
+                popup.Show();
             }
         }
 
