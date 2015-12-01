@@ -97,14 +97,12 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Customer Information") 
             {
-                //Parameters will be ("Customer", "")
-                PopupInformation popup = new PopupInformation();
+                PopupInformation popup = new PopupInformation("Customer", "");
                 popup.Show();
             }
             else if (lblTitle.Text == "Supplier Information")
             {
-                //Parameters will be ("Supplier", "")
-                PopupInformation popup = new PopupInformation();
+                PopupInformation popup = new PopupInformation("Supplier", "");
                 popup.Show();
             }
         }
@@ -134,14 +132,12 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Customer Information")
             {
-                //Parameters will be ("Customer", lstvwData.SelectedItems[0].SubItems[0].Text)
-                PopupInformation popup = new PopupInformation();
+                PopupInformation popup = new PopupInformation("Customer", lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
-                //Parameters will be ("Supplier", lstvwData.SelectedItems[0].SubItems[0].Text)
-                PopupInformation popup = new PopupInformation();
+                PopupInformation popup = new PopupInformation("Supplier", lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
             }
         }
