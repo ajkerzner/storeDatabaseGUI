@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtbxDiscount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbbxSupplier = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbbxProduct = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtbxQuantity = new System.Windows.Forms.TextBox();
+            this.txtbxCost = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox3
+            // txtbxDiscount
             // 
-            this.textBox3.Location = new System.Drawing.Point(485, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(130, 22);
-            this.textBox3.TabIndex = 41;
+            this.txtbxDiscount.Location = new System.Drawing.Point(485, 53);
+            this.txtbxDiscount.Name = "txtbxDiscount";
+            this.txtbxDiscount.Size = new System.Drawing.Size(130, 22);
+            this.txtbxDiscount.TabIndex = 41;
             // 
             // label5
             // 
@@ -58,13 +58,15 @@
             this.label5.TabIndex = 40;
             this.label5.Text = "Discount:";
             // 
-            // comboBox2
+            // cmbbxSupplier
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(385, 9);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(230, 24);
-            this.comboBox2.TabIndex = 39;
+            this.cmbbxSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbbxSupplier.FormattingEnabled = true;
+            this.cmbbxSupplier.Location = new System.Drawing.Point(385, 9);
+            this.cmbbxSupplier.Name = "cmbbxSupplier";
+            this.cmbbxSupplier.Size = new System.Drawing.Size(230, 24);
+            this.cmbbxSupplier.TabIndex = 39;
+            this.cmbbxSupplier.SelectedIndexChanged += new System.EventHandler(this.cmbbxSupplier_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -75,13 +77,15 @@
             this.label4.TabIndex = 38;
             this.label4.Text = "Supplier:";
             // 
-            // comboBox1
+            // cmbbxProduct
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(83, 9);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(230, 24);
-            this.comboBox1.TabIndex = 37;
+            this.cmbbxProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbbxProduct.FormattingEnabled = true;
+            this.cmbbxProduct.Location = new System.Drawing.Point(83, 9);
+            this.cmbbxProduct.Name = "cmbbxProduct";
+            this.cmbbxProduct.Size = new System.Drawing.Size(230, 24);
+            this.cmbbxProduct.TabIndex = 37;
+            this.cmbbxProduct.SelectedIndexChanged += new System.EventHandler(this.cmbbxProduct_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -101,6 +105,7 @@
             this.btnCancel.TabIndex = 35;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -109,22 +114,23 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(151, 33);
             this.btnAdd.TabIndex = 34;
-            this.btnAdd.Text = "Add Product";
+            this.btnAdd.Text = "Add Item";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // textBox2
+            // txtbxQuantity
             // 
-            this.textBox2.Location = new System.Drawing.Point(280, 51);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 22);
-            this.textBox2.TabIndex = 33;
+            this.txtbxQuantity.Location = new System.Drawing.Point(280, 51);
+            this.txtbxQuantity.Name = "txtbxQuantity";
+            this.txtbxQuantity.Size = new System.Drawing.Size(121, 22);
+            this.txtbxQuantity.TabIndex = 33;
             // 
-            // textBox1
+            // txtbxCost
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 32;
+            this.txtbxCost.Location = new System.Drawing.Point(83, 49);
+            this.txtbxCost.Name = "txtbxCost";
+            this.txtbxCost.Size = new System.Drawing.Size(121, 22);
+            this.txtbxCost.TabIndex = 32;
             // 
             // label3
             // 
@@ -149,16 +155,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 137);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtbxDiscount);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbbxSupplier);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbbxProduct);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtbxQuantity);
+            this.Controls.Add(this.txtbxCost);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "PopupInventory";
@@ -170,16 +176,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtbxDiscount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbbxSupplier;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbbxProduct;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtbxQuantity;
+        private System.Windows.Forms.TextBox txtbxCost;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
     }
