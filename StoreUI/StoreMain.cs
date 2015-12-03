@@ -279,11 +279,40 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Customer Information")
             {
-                //Populate with the Customer Information Table?
+                SQL = "SELECT * FROM Customers ORDERBY LastName";
+                dt = DataAccess.Read(SQL, null);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(dr["CustomerID"].ToString());
+                    item.SubItems.Add(dr["FirstName"].ToString() + " " + dr["LastName"].ToString());
+                    item.SubItems.Add(dr["Address"].ToString());
+                    item.SubItems.Add(dr["City"].ToString());
+                    item.SubItems.Add(dr["State"].ToString());
+                    item.SubItems.Add(dr["PostalCode"].ToString());
+                    item.SubItems.Add(dr["Phone"].ToString());
+                    item.SubItems.Add(dr["Email"].ToString());
+                    lstvwData.Items.Add(item);
+                }
             }
             else if (lblTitle.Text == "Supplier Information")
             {
-                //Populate with the Supplier Information Table?
+                SQL = "SELECT * FROM Customers ORDERBY LastName";
+                dt = DataAccess.Read(SQL, null);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(dr["SupplierID"].ToString());
+                    item.SubItems.Add(dr["SupplierName"].ToString());
+                    item.SubItems.Add(dr["Address"].ToString());
+                    item.SubItems.Add(dr["City"].ToString());
+                    item.SubItems.Add(dr["State"].ToString());
+                    item.SubItems.Add(dr["PostalCode"].ToString());
+                    item.SubItems.Add(dr["Phone"].ToString());
+                    item.SubItems.Add(dr["Email"].ToString());
+                    item.SubItems.Add(dr["Active"].ToString());
+                    lstvwData.Items.Add(item);
+                }
             }
             
 
