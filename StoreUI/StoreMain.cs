@@ -22,7 +22,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
-            lblOrderedProductsTitle.Visible = false;
         }
 
         #region Event Handlers
@@ -32,7 +31,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
-            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
@@ -41,7 +39,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
-            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiOrderCustomer_Click(object sender, EventArgs e)
@@ -50,7 +47,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = true;
-            lblOrderedProductsTitle.Visible = true;
         }
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
@@ -59,7 +55,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
-            lblOrderedProductsTitle.Visible = false;
         }
 
         private void tsmiInformationSupplier_Click(object sender, EventArgs e)
@@ -68,7 +63,6 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
-            lblOrderedProductsTitle.Visible = false;
         }
 
         //Changes the order by string
