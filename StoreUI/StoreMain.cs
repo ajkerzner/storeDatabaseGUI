@@ -120,6 +120,7 @@ namespace StoreUI
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             //Change the field that indicates if the order has been fulfilled
+            //Use DateTime.Now.ToOADate()
             //"Refresh" the listview
         }
 
@@ -174,7 +175,6 @@ namespace StoreUI
                 AddHeader("Discount", 100);
                 AddHeader("Quantity", 100); //QuantityInInventory
             }
-            //Need to check if there are more fields for this table
             else if (lblTitle.Text == "All Products") 
             {
                 AddHeader("Product Name", 200);
@@ -223,9 +223,6 @@ namespace StoreUI
             lstvwData.Columns.Add(header);
         }
 
-        //CREATE METHOD TO SET LIST VIEW HEADERS FOR ORDERED PRODUCTS (Second Listview)
-
-        //Needs to actually handle populating
         public void SetListView()
         {
             DataTable dt = new DataTable();
@@ -239,7 +236,6 @@ namespace StoreUI
             
             if (lblTitle.Text == "Inventory")
             {
-                //Populate with the Products table?
                 switch(OrderBy)
                 {
                     case "Product":
@@ -314,21 +310,6 @@ namespace StoreUI
                     lstvwData.Items.Add(item);
                 }
             }
-            
-
-            //For each row in the datatable returned from the database, add an item to the listview. Example:
-                //foreach (DataRow dr in recipeResults.Rows)
-                //{
-                //    ListViewItem item = new ListViewItem("Recipes");
-                //    item.SubItems.Add(dr["RecipeName"].ToString());
-                //    item.SubItems.Add(dr["RecipeName"].ToString());
-                //    lstvwSearchResults.Items.Add(item);
-                //}
-            //Remember that the item should correlate to the first column header, and each subitem to each consecutive header
-
-            //EXAMPLE OF HOW TO READ A TABLE FROM A DATABASE:
-            //string SQL = "SELECT * FROM Products ORDER BY ProductName"; //<-- Replace Product Name with whatever the sort by string is
-            //DataTable dt = DataAccess.Read(SQL, null);
         }
         #endregion
     }
