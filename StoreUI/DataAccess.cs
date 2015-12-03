@@ -13,7 +13,7 @@ namespace StoreUI
     {
         // Change the connection string's Data Source to use the path to the correct database file
         // If the database file is in the folder containing the EXE then a path is not necessary
-        private const string CONNECTION_STRING = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=Store.accdb";
+        private const string CONNECTION_STRING = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=JennsDatabase.accdb";
         private const CommandType COMMAND_TYPE_TEXT = CommandType.Text;
 
         // Executes a SQL SELECT statement against the connection and returns ONE DataTable of results.
