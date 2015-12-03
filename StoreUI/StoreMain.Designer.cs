@@ -102,14 +102,14 @@
             // customerToolStripMenuItem1
             // 
             this.customerToolStripMenuItem1.Name = "customerToolStripMenuItem1";
-            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
+            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.customerToolStripMenuItem1.Text = "Customer";
             this.customerToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationCustomer_Click);
             // 
             // supplierToolStripMenuItem1
             // 
             this.supplierToolStripMenuItem1.Name = "supplierToolStripMenuItem1";
-            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
+            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.supplierToolStripMenuItem1.Text = "Supplier";
             this.supplierToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationSupplier_Click);
             // 
@@ -119,8 +119,8 @@
             this.cmbbxSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbbxSortBy.FormattingEnabled = true;
             this.cmbbxSortBy.Items.AddRange(new object[] {
-            "Product Name",
-            "Supplier Name"});
+            "Product",
+            "Supplier"});
             this.cmbbxSortBy.Location = new System.Drawing.Point(645, 46);
             this.cmbbxSortBy.Name = "cmbbxSortBy";
             this.cmbbxSortBy.Size = new System.Drawing.Size(121, 24);

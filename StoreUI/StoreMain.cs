@@ -31,6 +31,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            lblSort.Visible = true;
             cmbbxSortBy.Visible = true;
             cmbbxSortBy.Items.Clear();
             cmbbxSortBy.Items.Add("Product");
@@ -43,6 +44,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
         }
 
@@ -53,6 +55,7 @@ namespace StoreUI
             SetListView();
             btnSubmit.Visible = true;
             cmbbxSortBy.Visible = true;
+            lblSort.Visible = true;
             cmbbxSortBy.Items.Clear();
             cmbbxSortBy.Items.Add("Order Invoice");
             cmbbxSortBy.Items.Add("Ordered Products");
@@ -65,6 +68,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
         }
 
@@ -74,6 +78,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
         }
 
