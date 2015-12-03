@@ -156,27 +156,29 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                AddHeader("Product Name", 200);
-                AddHeader("Description", 400);
-                AddHeader("Quantity", 100);
-                AddHeader("Price", 100);
+                AddHeader("InventoryItemID", 200);
+                AddHeader("SupplierID", 400);
+                AddHeader("ProductID", 100);
+                AddHeader("Product Name", 10); //Need a Join to retrieve this
+                AddHeader("Cost", 100);
+                AddHeader("Discount", 10);
+                AddHeader("Quantity", 10); //QuantityInInventory
             }
             //Need to check if there are more fields for this table
             else if (lblTitle.Text == "All Products") 
             {
                 AddHeader("Product Name", 200);
                 AddHeader("Description", 400);
-                AddHeader("Quantity", 100);
                 AddHeader("Price", 100);
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
                 AddHeader("Customer ID", 150);
                 AddHeader("Customer Name", 200);
+                AddHeader("Date Ordered", 10);
                 AddHeader("Shipping Preference", 300);
-                AddHeader("Tracking Number", 150);
                 AddHeader("Shipping Cost", 100);
-                
+                AddHeader("Tracking Number", 150);                
             }
             else if (lblTitle.Text == "Customer Information") 
             {
