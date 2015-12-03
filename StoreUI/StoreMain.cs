@@ -221,29 +221,28 @@ namespace StoreUI
                 lstvwData.Clear();
                 SetListViewHeaders();
             }
-            else
+            
+            if (lblTitle.Text == "Inventory")
             {
-                if (lblTitle.Text == "Inventory")
-                {
-                    //Populate with the Products table?
-                }
-                else if (lblTitle.Text == "Customer Orders")
-                {
-                    //Populate with the Customer Orders Table?
-                }
-                else if (lblTitle.Text == "Supplier Orders")
-                {
-                    //Populate with the Supplier Orders Table?
-                }
-                else if (lblTitle.Text == "Customer Information")
-                {
-                    //Populate with the Customer Information Table?
-                }
-                else if (lblTitle.Text == "Supplier Information")
-                {
-                    //Populate with the Supplier Information Table?
-                }
+                //Populate with the Products table?
             }
+            else if (lblTitle.Text == "Customer Orders")
+            {
+                //Populate with the Customer Orders Table?
+            }
+            else if (lblTitle.Text == "Supplier Orders")
+            {
+                //Populate with the Supplier Orders Table?
+            }
+            else if (lblTitle.Text == "Customer Information")
+            {
+                //Populate with the Customer Information Table?
+            }
+            else if (lblTitle.Text == "Supplier Information")
+            {
+                //Populate with the Supplier Information Table?
+            }
+            
 
             //For each row in the datatable returned from the database, add an item to the listview. Example:
                 //foreach (DataRow dr in recipeResults.Rows)
