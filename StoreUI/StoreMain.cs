@@ -169,10 +169,10 @@ namespace StoreUI
                 AddHeader("InventoryItemID", 200);
                 AddHeader("SupplierID", 400);
                 AddHeader("ProductID", 100);
-                AddHeader("Product Name", 10); //Need a Join to retrieve this
+                AddHeader("Product Name", 200); //Need a Join to retrieve this
                 AddHeader("Cost", 100);
-                AddHeader("Discount", 10);
-                AddHeader("Quantity", 10); //QuantityInInventory
+                AddHeader("Discount", 100);
+                AddHeader("Quantity", 100); //QuantityInInventory
             }
             //Need to check if there are more fields for this table
             else if (lblTitle.Text == "All Products") 
@@ -185,7 +185,7 @@ namespace StoreUI
             {
                 AddHeader("Customer ID", 150);
                 AddHeader("Customer Name", 200);
-                AddHeader("Date Ordered", 10);
+                AddHeader("Date Ordered", 150);
                 AddHeader("Shipping Preference", 300);
                 AddHeader("Shipping Cost", 100);
                 AddHeader("Tracking Number", 150);                
