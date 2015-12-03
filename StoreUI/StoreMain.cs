@@ -74,14 +74,7 @@ namespace StoreUI
         //Changes the order by string
        private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbbxSortBy.Text == "Product Name")
-            {
-                OrderBy = "Product Name";
-            } 
-            else if (cmbbxSortBy.Text == "Supplier Name")
-            {
-                OrderBy = "Supplier Name";
-            }
+            OrderBy = cmbbxSortBy.Text;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
