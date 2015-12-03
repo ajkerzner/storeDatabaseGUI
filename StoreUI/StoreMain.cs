@@ -17,6 +17,12 @@ namespace StoreUI
         public StoreMain()
         {
             InitializeComponent();
+            //Starts the view off with Inventory
+            lblTitle.Text = "Inventory";
+            SetListViewHeaders();
+            SetListView();
+            btnSubmit.Visible = false;
+            lblOrderedProductsTitle.Visible = false;
         }
 
         #region Event Handlers
@@ -218,7 +224,7 @@ namespace StoreUI
         //Needs to actually handle populating
         public void SetListView()
         {
-            if (lstvwData.Items.Count != 0)
+            if (lstvwData.Columns.Count != 0)
             {
                 lstvwData.Clear();
                 SetListViewHeaders();
