@@ -228,6 +228,9 @@ namespace StoreUI
         //Needs to actually handle populating
         public void SetListView()
         {
+            DataTable dt = new DataTable();
+            string SQL = ""; 
+
             if (lstvwData.Columns.Count != 0)
             {
                 lstvwData.Clear();
@@ -237,12 +240,40 @@ namespace StoreUI
             if (lblTitle.Text == "Inventory")
             {
                 //Populate with the Products table?
+                switch(OrderBy)
+                {
+                    case "Product":
+                        SQL = "SELECT * FROM SupplierProducts ORDERBY ProductID";
+                        break;
+                    case "Supplier":
+                        SQL = "SELECT * FROM SupplierProducts ORDERBY ProductID";
+                        break;
+                    default:
+                        SQL = "SELECT * FROM SupplierProducts";
+                        break;
+                }
+                dt = DataAccess.Read(SQL, null);
+
+                DataTable productnamedt = new DataTable();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(dr["InventoryItemID"].ToString());
+                    item.SubItems.Add(dr["SupplierID"].ToString());
+                    item.SubItems.Add(dr["ProductID"].ToString());
+                    SQL = "SELECT ProductName FROM Products WHERE ProductID=" + dr["ProductID"].ToString();
+                    productnamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(productnamedt.Rows[0]["ProductName"].ToString());
+                    item.SubItems.Add(dr["Cost"].ToString());
+                    item.SubItems.Add(dr["Discount"].ToString());
+                    item.SubItems.Add(dr["QuantityInInventory"].ToString());
+                    lstvwData.Items.Add(item);
+                }
             }
-            else if (lblTitle.Text == "Customer Orders")
+            else if (lblTitle.Text == "All Products")
             {
                 //Populate with the Customer Orders Table?
             }
-            else if (lblTitle.Text == "Supplier Orders")
+            else if (lblTitle.Text == "Customer Orders")
             {
                 //Populate with the Supplier Orders Table?
             }
@@ -267,8 +298,8 @@ namespace StoreUI
             //Remember that the item should correlate to the first column header, and each subitem to each consecutive header
 
             //EXAMPLE OF HOW TO READ A TABLE FROM A DATABASE:
-            string SQL = "SELECT * FROM Products ORDER BY ProductName"; //<-- Replace Product Name with whatever the sort by string is
-            DataTable dt = DataAccess.Read(SQL, null);
+            //string SQL = "SELECT * FROM Products ORDER BY ProductName"; //<-- Replace Product Name with whatever the sort by string is
+            //DataTable dt = DataAccess.Read(SQL, null);
         }
         #endregion
     }
