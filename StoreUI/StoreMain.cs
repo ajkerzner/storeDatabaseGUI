@@ -31,6 +31,10 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            cmbbxSortBy.Visible = true;
+            cmbbxSortBy.Items.Clear();
+            cmbbxSortBy.Items.Add("Product");
+            cmbbxSortBy.Items.Add("Supplier");
         }
 
         private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
@@ -39,6 +43,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            cmbbxSortBy.Visible = false;
         }
 
         private void tsmiOrderCustomer_Click(object sender, EventArgs e)
@@ -47,6 +52,11 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = true;
+            cmbbxSortBy.Visible = true;
+            cmbbxSortBy.Items.Clear();
+            cmbbxSortBy.Items.Add("Order Invoice");
+            cmbbxSortBy.Items.Add("Ordered Products");
+            cmbbxSortBy.Items.Add("Date Ordered");
         }
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
@@ -55,6 +65,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            cmbbxSortBy.Visible = false;
         }
 
         private void tsmiInformationSupplier_Click(object sender, EventArgs e)
@@ -63,6 +74,7 @@ namespace StoreUI
             SetListViewHeaders();
             SetListView();
             btnSubmit.Visible = false;
+            cmbbxSortBy.Visible = false;
         }
 
         //Changes the order by string
