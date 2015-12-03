@@ -183,12 +183,17 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
-                AddHeader("Customer ID", 150);
-                AddHeader("Customer Name", 200);
-                AddHeader("Date Ordered", 150);
-                AddHeader("Shipping Preference", 300);
-                AddHeader("Shipping Cost", 100);
-                AddHeader("Tracking Number", 150);                
+                AddHeader("OrderPartID", 50);
+                AddHeader("OrderID", 50);
+                AddHeader("CustomerID", 50);
+                AddHeader("Customer Name", 150);
+                AddHeader("Date Ordered", 300);
+                AddHeader("Shipping Preference", 100);
+                AddHeader("Shipping Cost", 150);
+                AddHeader("Tracking Number", 150);
+                AddHeader("InventoryItemID", 50);
+                AddHeader("Product Name", 150);
+                AddHeader("Quantity", 150);
             }
             else if (lblTitle.Text == "Customer Information") 
             {
@@ -269,9 +274,54 @@ namespace StoreUI
             {
                 //Populate with the Customer Orders Table?
             }
-            else if (lblTitle.Text == "Customer Orders")
+            else if (lblTitle.Text == "Order Invoices")
             {
-                //Populate with the Supplier Orders Table?
+                SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE "
+                    + "OrderInvoice.Completed=false";
+                dt = DataAccess.Read(SQL, null);
+
+                DataTable customernamedt = new DataTable(); //Customer Name
+                DataTable productnamedt = new DataTable(); //Product Name
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(dr["OrderPartID"].ToString());
+                    item.SubItems.Add(dr["OrderInvoice.OrderID"].ToString());
+                    item.SubItems.Add(dr["CustomerID"].ToString());
+
+                    // Retrieve Customer Name
+                    SQL = "SELECT LastName, FirstName FROM Customers WHERE CustomerID=" + dr["CustomerID"].ToString();
+                    customernamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(customernamedt.Rows[0]["FirstName"].ToString() + " " + customernamedt.Rows[0]["LastName"].ToString());
+
+                    item.SubItems.Add(dr["DateOrdered"].ToString());
+                    item.SubItems.Add(dr["ShippingPreference"].ToString());
+                    item.SubItems.Add(dr["ShippingCost"].ToString());
+                    item.SubItems.Add(dr["TrackingID"].ToString());
+                    item.SubItems.Add(dr["InventoryItemID"].ToString());
+
+                    // Retrieve Product Name
+                    SQL = "SELECT ProductName FROM Products WHERE ProductID = (SELECT ProductID FROM SupplierProducts WHERE InventoryItemID = "
+                        + dr["InventoryItemID"].ToString() + ")";
+                    productnamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(productnamedt.Rows[0]["ProductName"].ToString());
+
+                    item.SubItems.Add(dr["Quantity"].ToString());
+                    lstvwData.Items.Add(item);
+                }
+
+
+                //AddHeader("OrderPartID", 50);
+                //AddHeader("OrderID", 50);
+                //AddHeader("CustomerID", 50);
+                //AddHeader("Customer Name", 150);
+                //AddHeader("Date Ordered", 300);
+                //AddHeader("Shipping Preference", 100);
+                //AddHeader("Shipping Cost", 150);
+                //AddHeader("Tracking Number", 150);
+                //AddHeader("InventoryItemID", 50);
+                //AddHeader("Product Name", 150);
+                //AddHeader("Quantity", 150);
+
             }
             else if (lblTitle.Text == "Customer Information")
             {
