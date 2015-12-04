@@ -177,6 +177,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "All Products") 
             {
+                AddHeader("ProductID", 100);
                 AddHeader("Product Name", 200);
                 AddHeader("Description", 400);
                 AddHeader("Price", 100);
@@ -272,12 +273,38 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "All Products")
             {
-                //Populate with the Customer Orders Table?
+                SQL = "SELECT * FROM Products ORDERBY ProductName";
+                dt = DataAccess.Read(SQL, null);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(dr["ProductID"].ToString());
+                    item.SubItems.Add(dr["ProductName"].ToString());
+                    item.SubItems.Add(dr["Description"].ToString());
+                    item.SubItems.Add(dr["Price"].ToString());
+                    lstvwData.Items.Add(item);
+                }
             }
             else if (lblTitle.Text == "Order Invoices")
             {
-                SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE "
-                    + "OrderInvoice.Completed=false";
+                switch (OrderBy)
+                {
+                    case "Order Invoice":
+                        SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE " 
+                            + "OrderInvoice.Completed=false ORDER BY OrderInvoice.OrderID";
+                        break;
+                    case "Ordered Products":
+                        SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE "
+                            + "OrderInvoice.Completed=false ORDER BY OrderPartID";
+                        break;
+                    case "Date Ordered":
+                        SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE " 
+                            + "OrderInvoice.Completed=false ORDER BY DateOrdered";
+                        break;
+                    default:
+                        SQL = "SELECT * FROM OrderInvoice INNER JOIN OrderProduct ON OrderInvoice.OrderID = OrderProduct.OrderID WHERE "
+                            + "OrderInvoice.Completed=false";
+                        break;
+                }
                 dt = DataAccess.Read(SQL, null);
 
                 DataTable customernamedt = new DataTable(); //Customer Name
@@ -308,20 +335,6 @@ namespace StoreUI
                     item.SubItems.Add(dr["Quantity"].ToString());
                     lstvwData.Items.Add(item);
                 }
-
-
-                //AddHeader("OrderPartID", 50);
-                //AddHeader("OrderID", 50);
-                //AddHeader("CustomerID", 50);
-                //AddHeader("Customer Name", 150);
-                //AddHeader("Date Ordered", 300);
-                //AddHeader("Shipping Preference", 100);
-                //AddHeader("Shipping Cost", 150);
-                //AddHeader("Tracking Number", 150);
-                //AddHeader("InventoryItemID", 50);
-                //AddHeader("Product Name", 150);
-                //AddHeader("Quantity", 150);
-
             }
             else if (lblTitle.Text == "Customer Information")
             {
