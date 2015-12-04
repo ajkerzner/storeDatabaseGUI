@@ -36,6 +36,8 @@ namespace StoreUI
             cmbbxSortBy.Items.Clear();
             cmbbxSortBy.Items.Add("Product");
             cmbbxSortBy.Items.Add("Supplier");
+            btnAdd.Text = "Add Item";
+            btnEdit.Text = "Edit Item";
         }
 
         private void tsmiInventoryAllProducts_Click(object sender, EventArgs e)
@@ -46,6 +48,8 @@ namespace StoreUI
             btnSubmit.Visible = false;
             lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
+            btnAdd.Text = "Add Product";
+            btnEdit.Text = "Edit Product";
         }
 
         private void tsmiOrderCustomer_Click(object sender, EventArgs e)
@@ -60,6 +64,8 @@ namespace StoreUI
             cmbbxSortBy.Items.Add("Order Invoice");
             cmbbxSortBy.Items.Add("Ordered Products");
             cmbbxSortBy.Items.Add("Date Ordered");
+            btnAdd.Text = "Add Order";
+            btnEdit.Text = "Edit Order";
         }
 
         private void tsmiInformationCustomer_Click(object sender, EventArgs e)
@@ -70,6 +76,8 @@ namespace StoreUI
             btnSubmit.Visible = false;
             lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
+            btnAdd.Text = "Add Customer";
+            btnEdit.Text = "Edit Customer";
         }
 
         private void tsmiInformationSupplier_Click(object sender, EventArgs e)
@@ -80,6 +88,8 @@ namespace StoreUI
             btnSubmit.Visible = false;
             lblSort.Visible = false;
             cmbbxSortBy.Visible = false;
+            btnAdd.Text = "Add Supplier";
+            btnEdit.Text = "Edit Supplier";
         }
 
         //Changes the order by string
@@ -94,26 +104,31 @@ namespace StoreUI
             {
                 PopupProduct popup = new PopupProduct("");
                 popup.Show();
+                // TO DO : Refresh Listview
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
                 PopupOrder popup = new PopupOrder("");
                 popup.Show();
+                // TO DO : Refresh Listview
             }
             else if (lblTitle.Text == "All Products")
             {
                 PopupProduct popup = new PopupProduct("");
                 popup.Show();
+                // TO DO : Refresh Listview
             }
             else if (lblTitle.Text == "Customer Information") 
             {
                 PopupInformation popup = new PopupInformation("Customer", "");
                 popup.Show();
+                // TO DO : Refresh Listview
             }
             else if (lblTitle.Text == "Supplier Information")
             {
                 PopupInformation popup = new PopupInformation("Supplier", "");
                 popup.Show();
+                // TO DO : Refresh Listview
             }
         }
 
@@ -198,6 +213,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Customer Information") 
             {
+                AddHeader("CustomerID", 100);
                 AddHeader("Name", 200);
                 AddHeader("Address", 400);
                 AddHeader("City", 150);
@@ -208,6 +224,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
+                AddHeader("SupplierID", 100);
                 AddHeader("Name", 200);
                 AddHeader("Address", 400);
                 AddHeader("City", 150);
@@ -273,7 +290,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "All Products")
             {
-                SQL = "SELECT * FROM Products ORDERBY ProductName";
+                SQL = "SELECT * FROM Products ORDER BY ProductName";
                 dt = DataAccess.Read(SQL, null);
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -338,7 +355,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Customer Information")
             {
-                SQL = "SELECT * FROM Customers ORDERBY LastName";
+                SQL = "SELECT * FROM Customers ORDER BY LastName";
                 dt = DataAccess.Read(SQL, null);
 
                 foreach (DataRow dr in dt.Rows)
@@ -356,7 +373,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Supplier Information")
             {
-                SQL = "SELECT * FROM Customers ORDERBY LastName";
+                SQL = "SELECT * FROM Suppliers ORDER BY SupplierName";
                 dt = DataAccess.Read(SQL, null);
 
                 foreach (DataRow dr in dt.Rows)
