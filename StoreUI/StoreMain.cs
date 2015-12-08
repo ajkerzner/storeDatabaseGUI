@@ -213,7 +213,7 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
-                AddHeader("OrderPartID", -2);
+                AddHeader("OrderPartID", 125);
                 AddHeader("OrderID", -2);
                 AddHeader("CustomerID", -2);
                 AddHeader("Customer Name", -2);
