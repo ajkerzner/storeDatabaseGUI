@@ -195,9 +195,9 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                AddHeader("InventoryItemID", -1);
-                AddHeader("SupplierID", -1); //Need a Join to retrieve this
-                AddHeader("Supplier Name", -1);
+                AddHeader("InventoryItemID", -2);
+                AddHeader("SupplierID", -2); //Need a Join to retrieve this
+                AddHeader("Supplier Name", -2);
                 AddHeader("ProductID", -2);
                 AddHeader("Product Name", -2); //Need a Join to retrieve this
                 AddHeader("Cost", -2);
