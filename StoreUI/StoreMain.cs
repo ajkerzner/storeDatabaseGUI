@@ -158,26 +158,31 @@ namespace StoreUI
             {
                 PopupInventory popup = new PopupInventory(lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
+                SetListView();
             } 
             else if (lblTitle.Text == "Order Invoices")
             {
                 PopupOrder popup = new PopupOrder(lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
+                SetListView();
             }
             else if (lblTitle.Text == "All Products")
             {
                 PopupProduct popup = new PopupProduct(lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
+                SetListView();
             }
             else if (lblTitle.Text == "Customer Information")
             {
                 PopupInformation popup = new PopupInformation("Customer", lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
+                SetListView();
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
                 PopupInformation popup = new PopupInformation("Supplier", lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
+                SetListView();
             }
         }
 
