@@ -195,58 +195,58 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                AddHeader("InventoryItemID", -2);
-                AddHeader("SupplierID", -2); //Need a Join to retrieve this
-                AddHeader("Supplier Name", -2);
-                AddHeader("ProductID", -2);
-                AddHeader("Product Name", -2); //Need a Join to retrieve this
-                AddHeader("Cost", -2);
-                AddHeader("Discount", -2);
-                AddHeader("Quantity", 125); //QuantityInInventory
+                AddHeader("InventoryItemID", 200);
+                AddHeader("SupplierID", 100); //Need a Join to retrieve this
+                AddHeader("Supplier Name", 200);
+                AddHeader("ProductID", 100);
+                AddHeader("Product Name", 200); //Need a Join to retrieve this
+                AddHeader("Cost", 100);
+                AddHeader("Discount", 100);
+                AddHeader("Quantity", 100); //QuantityInInventory
             }
             else if (lblTitle.Text == "All Products") 
             {
-                AddHeader("ProductID", -2);
-                AddHeader("Product Name", -2);
-                AddHeader("Description", -2);
+                AddHeader("ProductID", 100);
+                AddHeader("Product Name", 200);
+                AddHeader("Description", 400);
                 AddHeader("Price", 100);
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
-                AddHeader("OrderPartID", 125);
-                AddHeader("OrderID", -2);
-                AddHeader("CustomerID", -2);
-                AddHeader("Customer Name", -2);
-                AddHeader("Date Ordered", -2);
-                AddHeader("Shipping Preference", -2);
-                AddHeader("Shipping Cost", -2);
-                AddHeader("Tracking Number", -2);
-                AddHeader("InventoryItemID", -2);
-                AddHeader("Product Name", -2);
-                AddHeader("Quantity", 125);
+                AddHeader("OrderPartID", 100);
+                AddHeader("OrderID", 100);
+                AddHeader("CustomerID", 100);
+                AddHeader("Customer Name", 150);
+                AddHeader("Date Ordered", 300);
+                AddHeader("Shipping Preference", 100);
+                AddHeader("Shipping Cost", 150);
+                AddHeader("Tracking Number", 150);
+                AddHeader("InventoryItemID", 50);
+                AddHeader("Product Name", 150);
+                AddHeader("Quantity", 150);
             }
             else if (lblTitle.Text == "Customer Information") 
             {
-                AddHeader("CustomerID", -2);
-                AddHeader("Name", -2);
-                AddHeader("Address", -2);
-                AddHeader("City", -2);
-                AddHeader("State", -2);
-                AddHeader("Postal Code", -2);
-                AddHeader("Phone", -2);
+                AddHeader("CustomerID", 100);
+                AddHeader("Name", 200);
+                AddHeader("Address", 400);
+                AddHeader("City", 150);
+                AddHeader("State", 50);
+                AddHeader("Postal Code", 100);
+                AddHeader("Phone", 150);
                 AddHeader("Email", 200);
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
-                AddHeader("SupplierID", -2);
-                AddHeader("Name", -2);
-                AddHeader("Address", -2);
-                AddHeader("City", -2);
-                AddHeader("State", -2);
-                AddHeader("Postal Code", -2);
-                AddHeader("Phone", -2);
-                AddHeader("Email", -2);
-                AddHeader("Active", 75);
+                AddHeader("SupplierID", 100);
+                AddHeader("Name", 200);
+                AddHeader("Address", 400);
+                AddHeader("City", 150);
+                AddHeader("State", 50);
+                AddHeader("Postal Code", 100);
+                AddHeader("Phone", 150);
+                AddHeader("Email", 200);
+                AddHeader("Active", 100);
             }
         }
 
