@@ -27,27 +27,27 @@ namespace StoreUI
 
             ColumnHeader header1 = new ColumnHeader();
             header1.Text = "InventoryItemID";
-            header1.Width = 20;
+            header1.Width = 100;
             header1.TextAlign = HorizontalAlignment.Center;
             lstvwOrderedProducts.Columns.Add(header1);
             ColumnHeader header2 = new ColumnHeader();
-            header2.Text = "SupplierID";
-            header2.Width = 15;
+            header2.Text = "Supplier";
+            header2.Width = 75;
             header2.TextAlign = HorizontalAlignment.Center;
             lstvwOrderedProducts.Columns.Add(header2);
             ColumnHeader header3 = new ColumnHeader();
-            header3.Text = "ProductID";
-            header3.Width = 15;
+            header3.Text = "Product";
+            header3.Width = 75;
             header3.TextAlign = HorizontalAlignment.Center;
             lstvwOrderedProducts.Columns.Add(header3);
             ColumnHeader header4 = new ColumnHeader();
             header4.Text = "Price";
-            header4.Width = 10;
+            header4.Width = 50;
             header4.TextAlign = HorizontalAlignment.Center;
             lstvwOrderedProducts.Columns.Add(header4);
             ColumnHeader header5 = new ColumnHeader();
             header5.Text = "Quantity";
-            header5.Width = 10;
+            header5.Width = 70;
             header5.TextAlign = HorizontalAlignment.Center;
             lstvwOrderedProducts.Columns.Add(header5);
 
@@ -66,13 +66,23 @@ namespace StoreUI
                 this.CustomerID = customersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
 
                 //Populate listview with store inventory
-                SQL = "SELECT InventoryItemID, SupplierID, ProductID, QuantityInInventory FROM Products";
+                SQL = "SELECT InventoryItemID, SupplierID, ProductID, QuantityInInventory FROM SupplierProducts";
                 DataTable dt = DataAccess.Read(SQL, null);
+                DataTable suppliernamedt = new DataTable();
+                DataTable productnamedt = new DataTable();
                 foreach(DataRow dr in dt.Rows)
                 {
                     ListViewItem item = new ListViewItem(dr["InventoryItemID"].ToString());
-                    item.SubItems.Add(dr["SupplierID"].ToString());
-                    item.SubItems.Add(dr["ProductID"].ToString());
+
+                    //Retrieve Supplier Name
+                    SQL = "SELECT SupplierName FROM Suppliers WHERE SupplierID=" + dr["SupplierID"].ToString();
+                    suppliernamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(suppliernamedt.Rows[0]["SupplierName"].ToString());
+
+                    //Retrieve Product Name
+                    SQL = "SELECT ProductName FROM Products WHERE ProductID=" + dr["ProductID"].ToString();
+                    productnamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(productnamedt.Rows[0]["ProductName"].ToString());
 
                     SQL = "SELECT Price FROM Products WHERE ProductID=" + dr["ProductID"].ToString();
                     DataTable pricedt = DataAccess.Read(SQL, null);
@@ -85,25 +95,30 @@ namespace StoreUI
                     item.Checked = false;
                     lstvwOrderedProducts.Items.Add(item);
                 }
+
+                cmbbxCustomers.SelectedIndex = 0;
+                cmbbxShippingPref.SelectedIndex = 0;
             }
             else
             {
                 btnAdd.Text = "Edit Order";
-                OrderID = ID;
+                this.OrderID = ID;
                 
                 // Set the customer combobox to the customer whose order is being edited
                 SQL = "SELECT CustomerID, ShippingCost FROM OrderInvoice WHERE OrderID=" + OrderID;
+                DataTable ordercustomersdt = DataAccess.Read(SQL, null);
+                SQL = "SELECT LastName, FirstName FROM Customers WHERE CustomerID=" + ordercustomersdt.Rows[0]["CustomerID"];
                 DataTable customersdt = DataAccess.Read(SQL, null);
-                SQL = "SELECT CustomerID, LastName, FirstName FROM Customers WHERE CustomerID=" + customersdt.Rows[0]["CustomerID"];
-                customersdt = DataAccess.Read(SQL, null);
-                cmbbxCustomers.Items.Add(customersdt.Rows[0]["CustomerID"].ToString() + " " + customersdt.Rows[0]["FirstName"].ToString() + " " + customersdt.Rows[0]["LastName"].ToString());
-                cmbbxCustomers.SelectedIndex = 1;
+                cmbbxCustomers.Items.Add(ordercustomersdt.Rows[0]["CustomerID"].ToString() + " " + customersdt.Rows[0]["FirstName"].ToString() + " " + customersdt.Rows[0]["LastName"].ToString());
+                cmbbxCustomers.SelectedIndex = 0;
 
-                this.CustomerID = customersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
-                txtbxShippingCost.Text = customersdt.Rows[0]["ShippingCost"].ToString();
+                this.CustomerID = ordercustomersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
+                txtbxShippingCost.Text = ordercustomersdt.Rows[0]["ShippingCost"].ToString();
 
                 SQL = "SELECT InventoryItemID, Quantity FROM OrderProduct WHERE OrderID=" + ID;
                 DataTable dt = DataAccess.Read(SQL, null);
+                DataTable suppliernamedt = new DataTable();
+                DataTable productnamedt = new DataTable();
                 foreach (DataRow dr in dt.Rows)
                 {
                     ListViewItem item = new ListViewItem(dr["InventoryItemID"].ToString());
@@ -111,18 +126,27 @@ namespace StoreUI
                     SQL = "SELECT SupplierID, ProductID, QuantityInInventory FROM SupplierProducts WHERE InventoryItemID="
                         + dr["InventoryItemID"].ToString();
                     DataTable productdt = DataAccess.Read(SQL, null);
+
+                    //Retrieve Supplier Name
+                    SQL = "SELECT SupplierName FROM Suppliers WHERE SupplierID=" + productdt.Rows[0]["SupplierID"].ToString();
+                    suppliernamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(suppliernamedt.Rows[0]["SupplierName"].ToString());
+
+                    //Retrieve Product Name
+                    SQL = "SELECT ProductName FROM Products WHERE ProductID=" + productdt.Rows[0]["ProductID"].ToString();
+                    productnamedt = DataAccess.Read(SQL, null);
+                    item.SubItems.Add(productnamedt.Rows[0]["ProductName"].ToString());
+
                     SQL = "SELECT Price FROM Products WHERE ProductID=" + productdt.Rows[0]["ProductID"].ToString();
                     DataTable pricedt = DataAccess.Read(SQL, null);
-
-                    item.SubItems.Add(productdt.Rows[0]["SupplierID"].ToString());
-                    item.SubItems.Add(productdt.Rows[0]["ProductID"].ToString());
                     if (pricedt != null)
                         item.SubItems.Add(pricedt.Rows[0]["Price"].ToString());
                     else
                         item.SubItems.Add("0.00");
+
                     item.SubItems.Add(productdt.Rows[0]["QuantityInInventory"].ToString());
                     item.SubItems.Add(dr["Quantity"].ToString());
-                    item.Checked = false;
+                    item.Checked = true;
                     lstvwOrderedProducts.Items.Add(item);                    
                 }
             }

@@ -162,7 +162,7 @@ namespace StoreUI
             } 
             else if (lblTitle.Text == "Order Invoices")
             {
-                PopupOrder popup = new PopupOrder(lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupOrder popup = new PopupOrder(lstvwData.SelectedItems[0].SubItems[1].Text);
                 popup.Show();
                 SetListView();
             }
