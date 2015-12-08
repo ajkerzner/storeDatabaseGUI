@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -104,39 +105,41 @@ namespace StoreUI
             {
                 PopupInventory popup = new PopupInventory("");
                 popup.Show();
-                // TO DO : Refresh Listview
+                SetListView();
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
                 PopupOrder popup = new PopupOrder("");
                 popup.Show();
-                // TO DO : Refresh Listview
+                SetListView();
             }
             else if (lblTitle.Text == "All Products")
             {
                 PopupProduct popup = new PopupProduct("");
                 popup.Show();
-                // TO DO : Refresh Listview
+                SetListView();
             }
             else if (lblTitle.Text == "Customer Information") 
             {
                 PopupInformation popup = new PopupInformation("Customer", "");
                 popup.Show();
-                // TO DO : Refresh Listview
+                SetListView();
             }
             else if (lblTitle.Text == "Supplier Information")
             {
                 PopupInformation popup = new PopupInformation("Supplier", "");
                 popup.Show();
-                // TO DO : Refresh Listview
+                SetListView();
             }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            //Change the field that indicates if the order has been fulfilled
-            //Use DateTime.Now.ToOADate()
-            //"Refresh" the listview
+            List<OleDbParameter> sqlParameters = new List<OleDbParameter>();
+            String SQL = "UPDATE OrderInvoice SET Completed=@orderComplete, DateCompleted=@dateComplete";
+            sqlParameters.Add(new OleDbParameter("@orderComplete", true));
+            sqlParameters.Add(new OleDbParameter("@dateComplete", DateTime.Now.ToOADate()));
+            SetListView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
