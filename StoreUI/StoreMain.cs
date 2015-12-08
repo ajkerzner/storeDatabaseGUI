@@ -188,9 +188,18 @@ namespace StoreUI
 
         private void lstvwData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Needed for order invoices to display the products that belong to that order
-            //If Title = "Order Invoices"
-                //Use that selection to determine the order and display its parts...
+            // Changes all records for an order to bold since submitting affects the entire order: better solution?
+            if (lstvwData.SelectedItems.Count > 0 && lblTitle.Text == "Order Invoices")
+            {
+                String id = lstvwData.SelectedItems[0].SubItems[1].Text;
+                foreach (ListViewItem item in lstvwData.Items)
+                {
+                    if (item.SubItems[1].Text == id)
+                        item.Font = new System.Drawing.Font("Microsoft Sans Serif", 8, System.Drawing.FontStyle.Bold);
+                    else
+                        item.Font = new System.Drawing.Font("Microsoft Sans Serif", 8, System.Drawing.FontStyle.Regular);
+                }
+            }
         }
         #endregion
 

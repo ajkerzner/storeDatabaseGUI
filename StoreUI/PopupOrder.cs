@@ -146,7 +146,7 @@ namespace StoreUI
 
                     item.SubItems.Add(productdt.Rows[0]["QuantityInInventory"].ToString());
                     item.SubItems.Add(dr["Quantity"].ToString());
-                    item.Checked = true;
+                    //item.Checked = true;
                     lstvwOrderedProducts.Items.Add(item);                    
                 }
             }
@@ -284,6 +284,22 @@ namespace StoreUI
         {
             if(cmbbxCustomers.Text != "") // Selected Count > 0 doesn't work for combobox, test this check
                 this.CustomerID = cmbbxCustomers.Text.Split(' ')[0];
+        }
+
+        //This may be the correct item checked event handler
+        private void lstvwOrderedProducts_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            //Foreach checked item
+                //Popup about quantity
+            foreach(ListViewItem item in lstvwOrderedProducts.Items)
+            {
+                if(item.Checked == true)
+                {
+                    item.Checked = true;
+                    string q = Interaction.InputBox("Enter Product Quantity: ", "Order Product Quantity");
+                    item.SubItems[4].Text = q;
+                }
+            }
         }
     }
 }

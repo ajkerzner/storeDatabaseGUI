@@ -130,6 +130,7 @@
             this.lstvwOrderedProducts.TabIndex = 29;
             this.lstvwOrderedProducts.UseCompatibleStateImageBehavior = false;
             this.lstvwOrderedProducts.View = System.Windows.Forms.View.Details;
+            this.lstvwOrderedProducts.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstvwOrderedProducts_ItemCheck);
             this.lstvwOrderedProducts.SelectedIndexChanged += new System.EventHandler(this.lstvwOrderedProducts_SelectedIndexChanged);
             // 
             // label3
