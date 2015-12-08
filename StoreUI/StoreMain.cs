@@ -135,52 +135,59 @@ namespace StoreUI
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            List<OleDbParameter> sqlParameters = new List<OleDbParameter>();
-            String SQL = "UPDATE OrderInvoice SET Completed=@orderComplete, DateCompleted=@dateComplete";
-            sqlParameters.Add(new OleDbParameter("@orderComplete", true));
-            sqlParameters.Add(new OleDbParameter("@dateComplete", DateTime.Now.ToOADate()));
-            int numAffectedRows = DataAccess.Update(SQL, sqlParameters);
-            if (numAffectedRows < 1)
+            if(lstvwData.SelectedItems.Count > 0)
             {
-                MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                List<OleDbParameter> sqlParameters = new List<OleDbParameter>();
+                String SQL = "UPDATE OrderInvoice SET Completed=@orderComplete, DateCompleted=@dateComplete WHERE OrderID="
+                    + lstvwData.SelectedItems[0].SubItems[1].Text;
+                sqlParameters.Add(new OleDbParameter("@orderComplete", true));
+                sqlParameters.Add(new OleDbParameter("@dateComplete", DateTime.Now.ToOADate()));
+                int numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+                if (numAffectedRows < 1)
+                {
+                    MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                SetListView();
             }
-            else
-            {
-                this.Close();
-            }
-
-            SetListView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            String ID = ""; //The ID of the thing to be edited
+            if (lstvwData.SelectedItems.Count > 0 && lblTitle.Text == "Order Invoices")
+                ID = lstvwData.SelectedItems[0].SubItems[1].Text; // Use the OrderID
+            else if (lstvwData.SelectedItems.Count > 0)
+                ID = lstvwData.SelectedItems[0].SubItems[0].Text; // Use the first available ID
+            else
+                ID = ""; // If there is no idea, then add NOT edit
+                
             if (lblTitle.Text == "Inventory") 
             {
-                PopupInventory popup = new PopupInventory(lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupInventory popup = new PopupInventory(ID);
                 popup.Show();
                 SetListView();
             } 
             else if (lblTitle.Text == "Order Invoices")
             {
-                PopupOrder popup = new PopupOrder(lstvwData.SelectedItems[0].SubItems[1].Text);
+                PopupOrder popup = new PopupOrder(ID);
                 popup.Show();
                 SetListView();
             }
             else if (lblTitle.Text == "All Products")
             {
-                PopupProduct popup = new PopupProduct(lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupProduct popup = new PopupProduct(ID);
                 popup.Show();
                 SetListView();
             }
             else if (lblTitle.Text == "Customer Information")
             {
-                PopupInformation popup = new PopupInformation("Customer", lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupInformation popup = new PopupInformation("Customer", ID);
                 popup.Show();
                 SetListView();
             }
             else if (lblTitle.Text == "Supplier Information") 
             {
-                PopupInformation popup = new PopupInformation("Supplier", lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupInformation popup = new PopupInformation("Supplier", ID);
                 popup.Show();
                 SetListView();
             }

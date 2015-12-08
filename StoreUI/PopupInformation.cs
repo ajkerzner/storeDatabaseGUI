@@ -43,7 +43,7 @@ namespace StoreUI
                     txtbxAddress.Text = dt.Rows[0]["Address"].ToString();
                     txtbxCity.Text = dt.Rows[0]["City"].ToString();
                     txtbxEmail.Text = dt.Rows[0]["Email"].ToString();
-                    txtbxPhoneNumber.Text = dt.Rows[0]["PhoneNumber"].ToString();
+                    txtbxPhoneNumber.Text = dt.Rows[0]["Phone"].ToString();
                     txtbxPostalCode.Text = dt.Rows[0]["PostalCode"].ToString();
                     cmbbxState.SelectedIndex = cmbbxState.FindStringExact(dt.Rows[0]["State"].ToString());
                 }
@@ -68,9 +68,11 @@ namespace StoreUI
                     txtbxAddress.Text = dt.Rows[0]["Address"].ToString();
                     txtbxCity.Text = dt.Rows[0]["City"].ToString();
                     txtbxEmail.Text = dt.Rows[0]["Email"].ToString();
-                    txtbxPhoneNumber.Text = dt.Rows[0]["PhoneNumber"].ToString();
+                    txtbxPhoneNumber.Text = dt.Rows[0]["Phone"].ToString();
                     txtbxPostalCode.Text = dt.Rows[0]["PostalCode"].ToString();
                     cmbbxState.SelectedIndex = cmbbxState.FindStringExact(dt.Rows[0]["State"].ToString());
+                    if (dt.Rows[0]["Active"].ToString() == "true" || dt.Rows[0]["Active"].ToString() == "True")
+                        chkbxActive.Checked = true;
                 }
             }
         }

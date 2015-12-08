@@ -90,7 +90,7 @@ namespace StoreUI
                         item.SubItems.Add(pricedt.Rows[0]["Price"].ToString());
                     else
                         item.SubItems.Add("0.00");
-                    item.SubItems.Add(dr["QuantityInInventory"].ToString());
+                    item.SubItems.Add("0/" + dr["QuantityInInventory"].ToString());
                     item.SubItems.Add("0");
                     item.Checked = false;
                     lstvwOrderedProducts.Items.Add(item);
@@ -183,8 +183,8 @@ namespace StoreUI
                 if (txtbxShippingCost.Text == "")
                     sqlParameters.Add(new OleDbParameter("@shippingcost", "0.00"));
                 else
-                    sqlParameters.Add(new OleDbParameter("@shippingcost", txtbxShippingCost.Text));
-                sqlParameters.Add(new OleDbParameter("@trackingid", 0)); // What should the tracking ID be??
+                    sqlParameters.Add(new OleDbParameter("@shippingcost", Double.Parse(txtbxShippingCost.Text)));
+                sqlParameters.Add(new OleDbParameter("@trackingid", 1234)); // What should the tracking ID be??
                 sqlParameters.Add(new OleDbParameter("@completed", false));
 
                 numAffectedRows = DataAccess.Create(SQL, sqlParameters);
@@ -204,10 +204,10 @@ namespace StoreUI
                             sqlParameters.Clear();
                             sqlParameters.Add(new OleDbParameter("@orderid", this.OrderID));
                             sqlParameters.Add(new OleDbParameter("@inventoryitemid", lvi.SubItems[0].Text));
-                            if (lvi.SubItems[4].Text == "")
+                            if (lvi.SubItems[4].Text == "" || lvi.SubItems[4].Text.Split('/')[0] == "" || lvi.SubItems[4].Text.Split('/')[0] == "0")
                                 sqlParameters.Add(new OleDbParameter("@quantity", 0));
                             else
-                                sqlParameters.Add(new OleDbParameter("@quantity", lvi.SubItems[4].Text));
+                                sqlParameters.Add(new OleDbParameter("@quantity", lvi.SubItems[4].Text.Split('/')[0]));
 
                             numAffectedRows = DataAccess.Create(SQL, sqlParameters);
                             if (numAffectedRows < 1)
@@ -286,18 +286,17 @@ namespace StoreUI
                 this.CustomerID = cmbbxCustomers.Text.Split(' ')[0];
         }
 
-        //This may be the correct item checked event handler
-        private void lstvwOrderedProducts_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void lstvwOrderedProducts_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             //Foreach checked item
-                //Popup about quantity
-            foreach(ListViewItem item in lstvwOrderedProducts.Items)
+            //Popup about quantity
+            foreach (ListViewItem item in lstvwOrderedProducts.Items)
             {
-                if(item.Checked == true)
+                if (item.Checked == true)
                 {
                     item.Checked = true;
-                    string q = Interaction.InputBox("Enter Product Quantity: ", "Order Product Quantity");
-                    item.SubItems[4].Text = q;
+                    string q = Interaction.InputBox("Enter Product Quantity for Order: ", "Order Product Quantity");
+                    item.SubItems[4].Text = q + "/" + item.SubItems[4].Text.Split('/')[1];
                 }
             }
         }
