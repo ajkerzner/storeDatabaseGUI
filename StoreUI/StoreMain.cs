@@ -102,7 +102,7 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                PopupProduct popup = new PopupProduct("");
+                PopupInventory popup = new PopupInventory("");
                 popup.Show();
                 // TO DO : Refresh Listview
             }
@@ -143,7 +143,7 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                PopupProduct popup = new PopupProduct(lstvwData.SelectedItems[0].SubItems[0].Text);
+                PopupInventory popup = new PopupInventory(lstvwData.SelectedItems[0].SubItems[0].Text);
                 popup.Show();
             } 
             else if (lblTitle.Text == "Order Invoices")
@@ -183,7 +183,8 @@ namespace StoreUI
             if (lblTitle.Text == "Inventory") 
             {
                 AddHeader("InventoryItemID", 200);
-                AddHeader("SupplierID", 400);
+                AddHeader("SupplierID", 100); //Need a Join to retrieve this
+                AddHeader("Supplier Name", 200);
                 AddHeader("ProductID", 100);
                 AddHeader("Product Name", 200); //Need a Join to retrieve this
                 AddHeader("Cost", 100);
@@ -265,7 +266,7 @@ namespace StoreUI
                         SQL = "SELECT * FROM SupplierProducts ORDERBY ProductID";
                         break;
                     case "Supplier":
-                        SQL = "SELECT * FROM SupplierProducts ORDERBY ProductID";
+                        SQL = "SELECT * FROM SupplierProducts ORDERBY SupplierID";
                         break;
                     default:
                         SQL = "SELECT * FROM SupplierProducts";
@@ -274,14 +275,27 @@ namespace StoreUI
                 dt = DataAccess.Read(SQL, null);
 
                 DataTable productnamedt = new DataTable();
+                DataTable suppliernamedt = new DataTable();
                 foreach (DataRow dr in dt.Rows)
                 {
                     ListViewItem item = new ListViewItem(dr["InventoryItemID"].ToString());
                     item.SubItems.Add(dr["SupplierID"].ToString());
+
+                    //Retrieve Supplier Name
+                    SQL = "SELECT SupplierName FROM Suppliers WHERE SupplierID=" + dr["SupplierID"].ToString();
+                    suppliernamedt = DataAccess.Read(SQL, null);
+                    if (suppliernamedt == null || suppliernamedt.Rows.Count <= 0)
+                        item.SubItems.Add("Supplier Not Found"); // Will cause an error upon edit
+                    else
+                        item.SubItems.Add(suppliernamedt.Rows[0]["SupplierName"].ToString());
+
                     item.SubItems.Add(dr["ProductID"].ToString());
+
+                    // Retrieve Product Name
                     SQL = "SELECT ProductName FROM Products WHERE ProductID=" + dr["ProductID"].ToString();
                     productnamedt = DataAccess.Read(SQL, null);
                     item.SubItems.Add(productnamedt.Rows[0]["ProductName"].ToString());
+
                     item.SubItems.Add(dr["Cost"].ToString());
                     item.SubItems.Add(dr["Discount"].ToString());
                     item.SubItems.Add(dr["QuantityInInventory"].ToString());

@@ -34,7 +34,7 @@ namespace StoreUI
             dt = DataAccess.Read(SQL, null);
             foreach (DataRow dr in dt.Rows)
             {
-                cmbbxSupplier.Items.Add(dr["ProductID"].ToString() + " " + dr["ProductName"].ToString());
+                cmbbxProduct.Items.Add(dr["ProductID"].ToString() + " " + dr["ProductName"].ToString());
             }
 
             // Initialize Add or Edit functionality
@@ -42,8 +42,8 @@ namespace StoreUI
             {
                 this.Text = "Add Item to Inventory";
                 btnAdd.Text = "Add Item";
-                cmbbxSupplier.SelectedIndex = 1;
-                cmbbxProduct.SelectedIndex = 1;
+                cmbbxSupplier.SelectedIndex = 0;
+                cmbbxProduct.SelectedIndex = 0;
             }
             else
             {
@@ -57,14 +57,18 @@ namespace StoreUI
                 txtbxDiscount.Text = dt.Rows[0]["Discount"].ToString();
                 txtbxQuantity.Text = dt.Rows[0]["QuantityInInventory"].ToString();
 
+                // Select supplier
                 SQL = "SELECT SupplierName FROM Suppliers WHERE SupplierID=" + dt.Rows[0]["SupplierID"].ToString();
                 DataTable IDdt = DataAccess.Read(SQL, null);
-                cmbbxSupplier.SelectedIndex = cmbbxSupplier.FindStringExact(dt.Rows[0]["SupplierID"].ToString() + " "
+                int selectIndex = cmbbxSupplier.FindStringExact(dt.Rows[0]["SupplierID"].ToString() + " "
                     + IDdt.Rows[0]["SupplierName"].ToString());
+                cmbbxSupplier.SelectedIndex = selectIndex;
+                 // Select product
                 SQL = "SELECT ProductName FROM Products WHERE ProductID=" + dt.Rows[0]["ProductID"].ToString();
                 IDdt = DataAccess.Read(SQL, null);
-                cmbbxSupplier.SelectedIndex = cmbbxSupplier.FindStringExact(dt.Rows[0]["ProductID"].ToString() + " "
-                    + IDdt.Rows[0]["SupplierName"].ToString());
+                selectIndex = cmbbxProduct.FindStringExact(dt.Rows[0]["ProductID"].ToString() + " "
+                    + IDdt.Rows[0]["ProductName"].ToString());
+                cmbbxProduct.SelectedIndex = selectIndex;
             }
         }
 

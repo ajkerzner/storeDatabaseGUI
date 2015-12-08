@@ -102,14 +102,14 @@
             // customerToolStripMenuItem1
             // 
             this.customerToolStripMenuItem1.Name = "customerToolStripMenuItem1";
-            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.customerToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
             this.customerToolStripMenuItem1.Text = "Customer";
             this.customerToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationCustomer_Click);
             // 
             // supplierToolStripMenuItem1
             // 
             this.supplierToolStripMenuItem1.Name = "supplierToolStripMenuItem1";
-            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(147, 26);
             this.supplierToolStripMenuItem1.Text = "Supplier";
             this.supplierToolStripMenuItem1.Click += new System.EventHandler(this.tsmiInformationSupplier_Click);
             // 
@@ -170,7 +170,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(151, 33);
             this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add Product";
+            this.btnAdd.Text = "Add Item";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -181,7 +181,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(151, 33);
             this.btnEdit.TabIndex = 15;
-            this.btnEdit.Text = "Edit Product";
+            this.btnEdit.Text = "Edit Item";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
