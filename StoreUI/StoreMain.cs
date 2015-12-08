@@ -195,14 +195,14 @@ namespace StoreUI
         {
             if (lblTitle.Text == "Inventory") 
             {
-                AddHeader("InventoryItemID", 200);
-                AddHeader("SupplierID", 100); //Need a Join to retrieve this
-                AddHeader("Supplier Name", 200);
-                AddHeader("ProductID", 100);
-                AddHeader("Product Name", 200); //Need a Join to retrieve this
-                AddHeader("Cost", 100);
-                AddHeader("Discount", 100);
-                AddHeader("Quantity", 100); //QuantityInInventory
+                AddHeader("InventoryItemID", -1);
+                AddHeader("SupplierID", -1); //Need a Join to retrieve this
+                AddHeader("Supplier Name", -1);
+                AddHeader("ProductID", -2);
+                AddHeader("Product Name", -2); //Need a Join to retrieve this
+                AddHeader("Cost", -2);
+                AddHeader("Discount", -2);
+                AddHeader("Quantity", -2); //QuantityInInventory
             }
             else if (lblTitle.Text == "All Products") 
             {
@@ -213,9 +213,9 @@ namespace StoreUI
             }
             else if (lblTitle.Text == "Order Invoices") 
             {
-                AddHeader("OrderPartID", 50);
-                AddHeader("OrderID", 50);
-                AddHeader("CustomerID", 50);
+                AddHeader("OrderPartID", 100);
+                AddHeader("OrderID", 100);
+                AddHeader("CustomerID", 100);
                 AddHeader("Customer Name", 150);
                 AddHeader("Date Ordered", 300);
                 AddHeader("Shipping Preference", 100);
