@@ -139,6 +139,16 @@ namespace StoreUI
             String SQL = "UPDATE OrderInvoice SET Completed=@orderComplete, DateCompleted=@dateComplete";
             sqlParameters.Add(new OleDbParameter("@orderComplete", true));
             sqlParameters.Add(new OleDbParameter("@dateComplete", DateTime.Now.ToOADate()));
+            int numAffectedRows = DataAccess.Update(SQL, sqlParameters);
+            if (numAffectedRows < 1)
+            {
+                MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                this.Close();
+            }
+
             SetListView();
         }
 
