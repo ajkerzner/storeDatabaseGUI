@@ -54,6 +54,7 @@ namespace StoreUI
             if(ID == "")
             {
                 btnAdd.Text = "Add Order";
+                this.Text = "New Order";
 
                 //Set the customer order box to all customers
                 SQL = "SELECT CustomerID, LastName, FirstName FROM Customers";
@@ -102,15 +103,17 @@ namespace StoreUI
             else
             {
                 btnAdd.Text = "Edit Order";
+                this.Text = "Edit Order";
                 this.OrderID = ID;
                 
                 // Set the customer combobox to the customer whose order is being edited
-                SQL = "SELECT CustomerID, ShippingCost FROM OrderInvoice WHERE OrderID=" + OrderID;
+                SQL = "SELECT CustomerID, ShippingCost, ShippingPreference FROM OrderInvoice WHERE OrderID=" + OrderID;
                 DataTable ordercustomersdt = DataAccess.Read(SQL, null);
                 SQL = "SELECT LastName, FirstName FROM Customers WHERE CustomerID=" + ordercustomersdt.Rows[0]["CustomerID"];
                 DataTable customersdt = DataAccess.Read(SQL, null);
                 cmbbxCustomers.Items.Add(ordercustomersdt.Rows[0]["CustomerID"].ToString() + " " + customersdt.Rows[0]["FirstName"].ToString() + " " + customersdt.Rows[0]["LastName"].ToString());
                 cmbbxCustomers.SelectedIndex = 0;
+                cmbbxShippingPref.SelectedIndex = cmbbxShippingPref.FindStringExact(ordercustomersdt.Rows[0]["ShippingPreference"].ToString());
 
                 this.CustomerID = ordercustomersdt.Rows[0]["CustomerID"].ToString(); // Default: Set the customer ID to the first customer
                 txtbxShippingCost.Text = ordercustomersdt.Rows[0]["ShippingCost"].ToString();

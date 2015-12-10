@@ -97,6 +97,7 @@ namespace StoreUI
        private void cmbbxSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             OrderBy = cmbbxSortBy.Text;
+            SetListView();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -146,6 +147,10 @@ namespace StoreUI
                 if (numAffectedRows < 1)
                 {
                     MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Order submitted.", "Order Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 SetListView();
             }
