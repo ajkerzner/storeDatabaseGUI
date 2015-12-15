@@ -302,10 +302,10 @@ namespace StoreUI
                 switch(OrderBy)
                 {
                     case "Product":
-                        SQL = "SELECT * FROM SupplierProducts ORDERBY ProductID";
+                        SQL = "SELECT * FROM SupplierProducts ORDER BY ProductID";
                         break;
                     case "Supplier":
-                        SQL = "SELECT * FROM SupplierProducts ORDERBY SupplierID";
+                        SQL = "SELECT * FROM SupplierProducts ORDER BY SupplierID";
                         break;
                     default:
                         SQL = "SELECT * FROM SupplierProducts";
